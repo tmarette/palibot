@@ -59,7 +59,7 @@ module.exports = {
               .setTitle("Monster : ".concat(prettyname))
               .setDescription(wiki)
               .addField("Weaknesse(s) : ", sortie, true)
-              .color("RANDOM")
+              .setColor("RANDOM")
             return ({embed})
             }
           fetch(wiki)

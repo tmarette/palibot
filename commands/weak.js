@@ -55,11 +55,13 @@ module.exports = {
                 sortie = sortie.concat(elements[i]+"\n")
                 }
               }
+              if (sortie === "") {return "This meownster doesn't even exists !";}
               const embed = new Discord.RichEmbed()
               .setTitle("Monster : ".concat(prettyname))
               .setDescription(wiki)
               .addField("Weaknesse(s) : ", sortie, true)
               .setColor("RANDOM")
+             
             return ({embed})
             }
         console.log(prettyname)

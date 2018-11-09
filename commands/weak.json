@@ -1,7 +1,6 @@
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
 
-const {monstres} = require('../config.json');
 module.exports = {
     name: 'wiki',
     description: 'i give one monster weaknesses',
@@ -12,12 +11,12 @@ module.exports = {
 
       const msg = message.content.toLowerCase();
 
-  		  if (args[0].includes( 'talent' )|| args[0].includes('skill'))
+  		  /*if (args[0].includes( 'talent' )|| args[0].includes('skill'))
             {message.channel.send('http://fr.mogapedia.wikia.com/wiki/MHGU_-_Liste_des_talents')}
 
-  		  else if (args[0] === 'list'){message.channel.send(monstres.split(", ").sort().join(", "));}
+  		  else if (args[0] === 'list'){message.channel.send(monstres.split(", ").sort().join(", "));}*/
 
-        else{
+        
 
   		      var monstre = capitalize(args[0])
   		      var prettyname = capitalize(args[0])
@@ -70,5 +69,5 @@ module.exports = {
 
 
           }
-        }
+        
       }

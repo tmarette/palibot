@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const Discord = require('discord.js');
 
 module.exports = {
-    name: 'wiki',
+    name: 'weak',
     description: 'i give one monster weaknesses',
     execute(message, args) {
       function capitalize(string) {

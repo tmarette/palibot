@@ -59,7 +59,7 @@ module.exports = {
               .setTitle("Monster : ".concat(prettyname))
               .setDescription(wiki)
               .addField("Weaknesse(s) : ", sortie, true)
-              .setImage('https://vignette.wikia.nocookie.net/mogapedia/images/1/16/Status_Effect-Waterblight_MH4_Icon.png/revision/latest/scale-to-width-down/20?cb=20140625220940&path-prefix=fr');
+              .color("RANDOM")
             return ({embed})
             }
           fetch(wiki)

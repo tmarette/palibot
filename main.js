@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const {prefix} = require('./config.json');
+//const {prefix} = require('./config.json');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
@@ -19,9 +19,6 @@ client.once('ready', () => {
 
 client.on('message', message => {
 	if (message.author.bot) {return;}
-
-	client.commands.get('reactions').execute(message);
-
 	const args = message.content.slice().split(/ +/);
 	const commandName = args.shift().toLowerCase();
 

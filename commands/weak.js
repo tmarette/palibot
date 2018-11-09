@@ -62,11 +62,12 @@ module.exports = {
               .setColor("RANDOM")
             return ({embed})
             }
+        console.log(prettyname)
           fetch(wiki)
               .then(res => res.text())
               .then(body => message.channel.send(wik(body)))
 
-
+            
 
           }
         

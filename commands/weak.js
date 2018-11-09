@@ -16,7 +16,7 @@ module.exports = {
 
   		  else if (args[0] === 'list'){message.channel.send(monstres.split(", ").sort().join(", "));}*/
 
-        
+
 
   		      var monstre = capitalize(args[0])
   		      var prettyname = capitalize(args[0])
@@ -41,13 +41,13 @@ module.exports = {
   	      const wiki = "https://monsterhunter.fandom.com/wiki/".concat(monstre)
 
           function wik(doc){
-            
-            
+
+
             const elements = ['Fire','Ice','Dragon','Thunder','Water']
             const deb = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to:</h3>');
             const fin =  doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Habitats:</h3>');
 
-            var sortie = ""
+            var sortie = "" //contains all elements the monster is weak to
             const doc2 = doc.substring(deb,fin);
             for (var i=0; i < elements.length; i++){
 
@@ -55,13 +55,25 @@ module.exports = {
                 sortie = sortie.concat(elements[i]+"\n")
                 }
               }
+
               if (sortie === "") {return "This meownster doesn't even exists !";}
-              const embed = new Discord.RichEmbed()
-              .setTitle("Monster : ".concat(prettyname))
-              .setDescription(wiki)
+              if (Math.random() >.999) {sortie = sortie.concat("Also, this monster seems weak to Death :3")}
+
+
+              const deb2 = doc.indexOf('<td colspan="2" style="background-color:#3A5766; color:#ffffff; font-weight:bold; font-size:9pt; text-align:center;"><b>Monster Hunter Generations</b>');
+              const fin2 =  doc.indexOf('<b>Threat Level');
+              var doc_thumb = doc.substring(deb2,fin2); //contains the thumbnail
+              const deb3 = doc_thumb.indexOf('data-src=')+10;
+              const fin3 = doc_thumb.indexOf('  	 width=')-1;
+              doc_thumb = doc_thumb.substring(deb3,fin3);
+
+                const embed = new Discord.RichEmbed()
+                .setTitle("Monster : ".concat(prettyname))
+                .setDescription(wiki)
+                .setThumbnail(doc_thumb)
               .addField("Weaknesse(s) : ", sortie, true)
               .setColor("RANDOM")
-             
+
             return ({embed})
             }
         console.log(prettyname)
@@ -69,8 +81,8 @@ module.exports = {
               .then(res => res.text())
               .then(body => message.channel.send(wik(body)))
 
-            
+
 
           }
-        
+
       }

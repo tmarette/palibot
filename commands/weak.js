@@ -68,14 +68,14 @@ module.exports = {
               doc_thumb = doc_thumb.substring(deb3,fin3);
 
                 var embed = new Discord.RichEmbed()
-              .setTitle("Monster : ".concat(prettyname))
-              .setDescription(wiki)
-
+                .setTitle("Monster : ".concat(prettyname))
+                .setDescription(wiki)
               .addField("Weaknesse(s) : ", sortie, true)
               .setColor("RANDOM")
-              /*try {embed.setThumbnail(doc_thumb)} catch(error){
-                console.error(error);
-              }*/
+              if (doc_thumb.includes(".png")){embed.setThumbnail(doc_thumb);}
+              else {return {embed};}
+
+
             return ({embed})
             }
         console.log(prettyname)

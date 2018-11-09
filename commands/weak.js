@@ -73,9 +73,9 @@ module.exports = {
 
               .addField("Weaknesse(s) : ", sortie, true)
               .setColor("RANDOM")
-              try {embed.setThumbnail(doc_thumb)} catch(error){
+              /*try {embed.setThumbnail(doc_thumb)} catch(error){
                 console.error(error);
-              }
+              }*/
             return ({embed})
             }
         console.log(prettyname)

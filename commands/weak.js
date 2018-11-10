@@ -73,7 +73,7 @@ module.exports = {
               }
             }
             if (ail === ""){
-              ail = "None."
+              ail = "None"
             }
               const deb2= doc.indexOf('<td colspan="2" style="background-color:#3A5766; color:#ffffff; font-weight:bold; font-size:9pt; text-align:center;"><b>Monster Hunter');
               const fin2 =  doc.indexOf('<b>Threat Level');

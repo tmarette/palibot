@@ -21,11 +21,13 @@ module.exports = {
 
 
 
-  		      var monstre = capitalize(args[0])
-  		      var prettyname = capitalize(args[0])
-  		        for (var i = 1; i < args.length; i++) {
-                  prettyname = prettyname.concat(" ");
-  			           monstre = monstre.concat("_");
+        var monstre = ""
+    		      var prettyname = ""
+    		        for (var i = 0; i < args.length; i++) {
+                  if (i != 0) {
+                    prettyname = prettyname.concat(" ");
+    			           monstre = monstre.concat("_");
+                   }
   			              if (args[i].includes("-")) {
   				                    const [a,b] = args[i].split("-");
   				                    monstre = monstre.concat(capitalize(a));

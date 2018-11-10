@@ -5,7 +5,7 @@ const ailments = ['Poison','Deadly Poison','Paralysis', 'Sleep', 'Stun', 'Defens
 
 
 module.exports = {
-    name: 'wiki',
+    name: 'weak',
     description: 'i give one monster weaknesses',
     execute(message, args) {
       function capitalize(string) {

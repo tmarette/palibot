@@ -1,8 +1,11 @@
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
+const elements = ['Fire','Ice','Dragon','Thunder','Water'];
+const ailments = ['Poison','Deadly Poison','Paralysis', 'Sleep', 'Stun', 'Defense Down', 'Soiled', 'Fatigue','Snowman','Muddy','Blastblight','Frenzy Virus','Webbed','Bleeding','Confusion','Bubbleblight','Mucus','Ossified','Effluvium','Fireblight','Waterblight','Thunderblight','Iceblight','Dragonblight'];
+
 
 module.exports = {
-    name: 'weak',
+    name: 'wiki',
     description: 'i give one monster weaknesses',
     execute(message, args) {
       function capitalize(string) {
@@ -43,23 +46,32 @@ module.exports = {
           function wik(doc){
 
 
-            const elements = ['Fire','Ice','Dragon','Thunder','Water']
+
             const deb = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to:</h3>');
             const fin =  doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Habitats:</h3>');
 
-            var sortie = "" //contains all elements the monster is weak to
+            var weaknesses = ""; //contains all elements the monster is weak to
+
             const doc2 = doc.substring(deb,fin);
             for (var i=0; i < elements.length; i++){
 
               if (doc2.includes(elements[i])){
-                sortie = sortie.concat(elements[i]+"\n")
+                weaknesses = weaknesses.concat(elements[i]+"\n")
                 }
               }
 
-              if (sortie === "") {return "This meownster doesn't even exists !";}
-              if (Math.random() >.999) {sortie = sortie.concat("Also, this monster seems weak to Death :3")}
+              if (weaknesses === "") {return "This meownster doesn't even exists !";}
+              if (Math.random() >.999) {weaknesses = weaknesses.concat("Also, this monster seems weak to Death :3")}
 
-
+            var ail= "";
+            const debail = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Ailment/s:</h3>');
+            const finail = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to:</h3>')
+            const docail = doc.substring(debail,finail)
+            for (var i=0; i<ailments.length;i++){
+              if (docail.includes(ailments[i])){
+                ail = ail.concat(ailments[i]).concat('\n');
+              }
+            }
 
               const deb2= doc.indexOf('<td colspan="2" style="background-color:#3A5766; color:#ffffff; font-weight:bold; font-size:9pt; text-align:center;"><b>Monster Hunter');
               const fin2 =  doc.indexOf('<b>Threat Level');
@@ -76,10 +88,13 @@ module.exports = {
               doc_thumb = doc_thumb.substring(deb3,fin3);
 
                 var embed = new Discord.RichEmbed()
-                .setTitle("Monster : ".concat(prettyname))
-                .setDescription(wiki)
-              .addField("Weaknesse(s) : ", sortie, true)
               .setColor("RANDOM")
+              .setTitle("Monster : ".concat(prettyname))
+              .setDescription(wiki)
+              .addField("Weaknesse(s) : ", weaknesses, true)
+              .addField("Ailment(s) : ",ail, true )
+
+
               if (doc_thumb.includes(".png")){embed.setThumbnail(doc_thumb);}
               else {return {embed};}
 

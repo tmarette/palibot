@@ -97,7 +97,8 @@ module.exports = {
                 var embed = new Discord.RichEmbed()
               .setColor("RANDOM")
               .setTitle("Monster : ".concat(prettyname))
-              .setDescription(wiki)
+              .setURL(wiki)
+              //.setDescription(wiki)
               .addField("Weakness(es) : ", weaknesses, true)
               .addField("Ailment(s) : ",ail, true )
 

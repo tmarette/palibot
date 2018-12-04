@@ -109,8 +109,7 @@ module.exports = {
 
             return ({embed})
             }
-        console.log(message.author.username.concat(" -> ".concat(prettyname))
-        console.log(message.author.username)
+        console.log(message.author.username.concat(" -> ".concat(prettyname)))
           fetch(wiki)
               .then(res => res.text())
               .then(body => message.channel.send(wik(body)))

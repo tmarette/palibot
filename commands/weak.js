@@ -66,7 +66,7 @@ module.exports = {
               }
 
               if (weaknesses === "") {return "This meownster doesn't even exists !";}
-              if (monstre = "pet") {return "*purrr purrr*;}
+              if (prettyname = "Pet") {return "*purrr purrr*";}
               if (Math.random() >.999) {weaknesses = weaknesses.concat("Also, this monster seems weak to Death :3")}
 
             var ail= "";

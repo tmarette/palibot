@@ -45,7 +45,7 @@ module.exports = {
   		                  prettyname = prettyname.concat(capitalize(args[i]));
   			                 }
   		  }
-
+            
   	      const wiki = "https://monsterhunter.fandom.com/wiki/".concat(monstre)
 
           function wik(doc){
@@ -66,6 +66,7 @@ module.exports = {
               }
 
               if (weaknesses === "") {return "This meownster doesn't even exists !";}
+              if (monstre = "pet") {return "*purrr purrr*;}
               if (Math.random() >.999) {weaknesses = weaknesses.concat("Also, this monster seems weak to Death :3")}
 
             var ail= "";

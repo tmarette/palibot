@@ -65,7 +65,8 @@ module.exports = {
                 }
               }
               if (prettyname === "Pet") {return "*purrr purrr*";}
-              if (weaknesses === "") {return "This meownster doesn't even exists !";}
+              if (weaknesses === "") {console.log("Failure.");
+                                      return "This meownster doesn't even exists !";}
 
               if (Math.random() >.999) {weaknesses = weaknesses.concat("Also, this monster seems weak to Death :3")}
 
@@ -105,9 +106,10 @@ module.exports = {
 
 
               if (doc_thumb.includes(".png")){embed.setThumbnail(doc_thumb);}
-              else {return {embed};}
+              else {console.log("Success.");
+                    return {embed};}
 
-
+            console.log("Success.");
             return ({embed})
             }
         console.log(message.author.username.concat(" -> ".concat(prettyname)))

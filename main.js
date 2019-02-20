@@ -14,8 +14,7 @@ for (const file of commandFiles) {
 const cooldowns = new Discord.Collection();
 
 client.once('ready', () => {
-	console.log('Ready!');
-	console.log(client.guilds.size.toString())
+	console.log(`Ready to serve on ${client.guilds.size} servers, for ${client.users.size} users.`);
 });
 
 client.on('message', message => {

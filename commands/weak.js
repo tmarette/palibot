@@ -65,7 +65,7 @@ module.exports = {
                 }
               }
               if (prettyname === "Pet") {return "*purrr purrr*";}
-              if (prettyname === "Data"){return `Ready to serve on ${client.guilds.size} servers, for ${client.users.size} users.`;}
+
               if (weaknesses === "") {console.log("Failure.");
                                       return "This meownster doesn't even exists !";}
 

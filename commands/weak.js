@@ -41,12 +41,12 @@ module.exports = {
 
         function wik(doc){
 
-
+          //We first create 'weaknesses', the string containing the monster's weaknesses.
 
           const begin_weak = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to:</h3>');
           const end_weak =  doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Habitats:</h3>');
 
-          var weaknesses = ``; //contains all elements the monster is weak to
+          var weaknesses = ``;
 
           const doc2 = doc.substring(begin_weak,end_weak);
           for (var i=0; i < elements.length; i++){
@@ -57,8 +57,12 @@ module.exports = {
               weaknesses = weaknesses.concat(`${elt}`+` `+elements[i]+`\n`)
               }
             }
-            if (weaknesses === ``) {console.log("Failure.");
-                                    return "This meownster doesn't even exists !";}
+          if (weaknesses === ``) {
+            console.log("Failure.");
+            return "This meownster doesn't even exists !";}
+
+
+          //Now we create 'ail', the string containing the ailments.
 
           var ail= "";
           const begin_ailment = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Ailment/s:</h3>');
@@ -75,41 +79,40 @@ module.exports = {
           if (ail === ``){
             ail = `None`
           }
-          
-            const begin_narrow_document= doc.indexOf('<td colspan="2" style="background-color:#3A5766; color:#ffffff; font-weight:bold; font-size:9pt; text-align:center;"><b>Monster Hunter');
-            const end_narrow_document =  doc.indexOf('<b>Threat Level');
-            var doc_thumb = doc.substring(begin_narrow_document,end_narrow_document);
-            while (doc_thumb.includes('begin_narrow_document')){
 
+          //We now create the embed.
 
+          const begin_narrow_document= doc.indexOf('<td colspan="2" style="background-color:#3A5766; color:#ffffff; font-weight:bold; font-size:9pt; text-align:center;"><b>Monster Hunter');
+          const end_narrow_document =  doc.indexOf('<b>Threat Level');
+          var doc_thumb = doc.substring(begin_narrow_document,end_narrow_document);
 
-              var doc_thumb = doc_thumb.substring(begin_narrow_document,end_narrow_document); //contains the thumbnail
-
+          while (doc_thumb.includes('begin_narrow_document')){
+            var doc_thumb = doc_thumb.substring(begin_narrow_document,end_narrow_document); //contains the thumbnail
           }
+
           const begin_thumbnail = doc_thumb.indexOf('data-src=')+10;
           const end_thumbnail = doc_thumb.indexOf('  	 width=')-1;
           doc_thumb = doc_thumb.substring(begin_thumbnail,end_thumbnail);
 
 
-
               //Now creating the embed message
-              var embed = new Discord.RichEmbed()
-              .setColor("RANDOM")
-              .setTitle("Monster : ".concat(prettyname))
-              .setURL(wiki)
-              //.setDescription(wiki)
-              .addField("Weakness(es) : ", weaknesses, true)
-              .addField("Ailment(s) : ",ail, true )
+          var embed = new Discord.RichEmbed()
+            .setColor("RANDOM")
+            .setTitle("Monster : ".concat(prettyname))
+            .setURL(wiki)
+            //.setDescription(wiki)
+            .addField("Weakness(es) : ", weaknesses, true)
+            .addField("Ailment(s) : ",ail, true )
 
-              if (doc_thumb.includes(".png")){embed.setThumbnail(doc_thumb);} //If there is a fitting image, then it is the thumbnail
+            if (doc_thumb.includes(".png")){embed.setThumbnail(doc_thumb);} //If there is a fitting image, then it is the thumbnail
 
               console.log("Success."); //Let's put in the logs that the request is a success
               return ({embed}) //Let's return the final message
             }
         console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`); //Nice logs
-          fetch(wiki)
-              .then(res => res.text())
-              .then(body => message.channel.send(wik(body)))
+        fetch(wiki)
+            .then(res => res.text())
+            .then(body => message.channel.send(wik(body)))
 
           }
 

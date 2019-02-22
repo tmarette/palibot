@@ -19,16 +19,14 @@ module.exports = {
 
   		  else if (args[0] === 'list'){message.channel.send(monstres.split(", ").sort().join(", "));}*/
 
-
-
         var monstre = ""
-    		      var prettyname = ""
-    		        for (var i = 0; i < args.length; i++) {
+              var prettyname = ""
+                for (var i = 0; i < args.length; i++) {
                   if (i != 0) {
                     prettyname = prettyname.concat(" ");
-    			           monstre = monstre.concat("_");
+                     monstre = monstre.concat("_");
                    }
-  			              if (args[i].includes("-")) {
+                      if (args[i].includes("-")) {
                               const mots = args[i].split("-");
                               for (var j=0;j < mots.length;j++){
                                 if (j!=0){
@@ -36,17 +34,17 @@ module.exports = {
                                   prettyname = prettyname.concat("-");
                                 }
                               const a = capitalize(mots[j])
-  				                    monstre = monstre.concat(a);
-  				                    prettyname = prettyname.concat(a);
+                              monstre = monstre.concat(a);
+                              prettyname = prettyname.concat(a);
                             }
                           }
-  			           else{
-  		                  monstre = monstre.concat(capitalize(args[i]))
-  		                  prettyname = prettyname.concat(capitalize(args[i]));
-  			                 }
-  		  }
+                   else{
+                        monstre = monstre.concat(capitalize(args[i]))
+                        prettyname = prettyname.concat(capitalize(args[i]));
+                         }
+        }
 
-  	      const wiki = "https://monsterhunter.fandom.com/wiki/".concat(monstre)
+          const wiki = "https://monsterhunter.fandom.com/wiki/".concat(monstre)
 
           function wik(doc){
 
@@ -55,21 +53,19 @@ module.exports = {
             const deb = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to:</h3>');
             const fin =  doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Habitats:</h3>');
 
-            var weaknesses = ""; //contains all elements the monster is weak to
+            var weaknesses = ``; //contains all elements the monster is weak to
 
             const doc2 = doc.substring(deb,fin);
             for (var i=0; i < elements.length; i++){
 
               if (doc2.includes(elements[i])){
-                weaknesses = weaknesses.concat(elements[i]+"\n")
+                current_elt = elements[i];
+                elt = client.emojis.find(emoji => emoji.name === current_elt+"_weakness");
+                weaknesses = weaknesses.concat(`${elt}`+` `+elements[i]+`\n`)
                 }
               }
-              if (prettyname === "Pet") {return "*purrr purrr*";}
-
-              if (weaknesses === "") {console.log("Failure.");
+              if (weaknesses === ``) {console.log("Failure.");
                                       return "This meownster doesn't even exists !";}
-
-              if (Math.random() >.999) {weaknesses = weaknesses.concat("Also, this monster seems weak to Death :3")}
 
             var ail= "";
             const debail = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Ailment/s:</h3>');
@@ -77,11 +73,13 @@ module.exports = {
             const docail = doc.substring(debail,finail)
             for (var i=0; i<ailments.length;i++){
               if (docail.includes(ailments[i])){
-                ail = ail.concat(ailments[i]).concat('\n');
+                current_ail = ailments[i];
+                emoj_ail = client.emojis.find(emoji => emoji.name === current_ail+"_ailment");
+                ail = ail.concat(emoj_ail+` `+ailments[i]+`\n`);
               }
             }
-            if (ail === ""){
-              ail = "None"
+            if (ail === ``){
+              ail = `None`
             }
               const deb2= doc.indexOf('<td colspan="2" style="background-color:#3A5766; color:#ffffff; font-weight:bold; font-size:9pt; text-align:center;"><b>Monster Hunter');
               const fin2 =  doc.indexOf('<b>Threat Level');

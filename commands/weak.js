@@ -112,7 +112,7 @@ module.exports = {
             console.log("Success.");
             return ({embed})
             }
-        console.log(message.guild.name + ` (${message.guild.memberCount} users)` " -> "+ prettyname + ` (request by ${message.author.username})`);
+        console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);
           fetch(wiki)
               .then(res => res.text())
               .then(body => message.channel.send(wik(body)))

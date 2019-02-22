@@ -60,7 +60,6 @@ module.exports = {
 
               if (doc2.includes(elements[i])){
                 current_elt = elements[i].replace(/ /g,'_');
-                message.channel.send(current_elt);
                 elt = client.emojis.find(emoji => emoji.name === current_elt+"_weakness");
                 weaknesses = weaknesses.concat(`${elt}`+` `+elements[i]+`\n`)
                 }
@@ -74,7 +73,7 @@ module.exports = {
             const docail = doc.substring(debail,finail)
             for (var i=0; i<ailments.length;i++){
               if (docail.includes(ailments[i])){
-                current_ail = ailments[i];
+                current_ail = ailments[i].replace(/ /g,'_');
                 emoj_ail = client.emojis.find(emoji => emoji.name === current_ail+"_ailment");
                 ail = ail.concat(emoj_ail+` `+ailments[i]+`\n`);
               }

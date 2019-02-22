@@ -31,7 +31,7 @@ module.exports = {
           monstre +=  capitalize(name_bits) + "_";
           prettyname +=  capitalize(name_bits) + " ";
       }
-      
+
         monstre = monstre.slice(0,monstre.length-1)
         prettyname = prettyname.slice(0,prettyname.length-1)
         const wiki = "https://monsterhunter.fandom.com/wiki/" + monstre //The url we are fetching
@@ -40,54 +40,57 @@ module.exports = {
 
 
         function wik(doc){
-              //first we get all the weaknesses of the monster.
-            var weaknesses = ``;
-            const deb = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to:</h3>');
-            const fin =  doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Habitats:</h3>');
 
-            const doc2 = doc.substring(deb,fin);
-            for (var i=0; i < elements.length; i++){
 
-              if (doc2.includes(elements[i])){
-                current_elt = elements[i].replace(/ /g,'_');
-                elt = client.emojis.find(emoji => emoji.name === current_elt+"_weakness");
-                weaknesses = weaknesses.concat(`${elt}`+` `+elements[i]+`\n`)
-                }
-              }
-              if (weaknesses === ``) {console.log("Failure.");
-                                      return "This meownster doesn't even exists !";} //if no weakness found, then the url might me wrong, thus indicating the monster doesnt exists
 
-            //Now we get its ailments.
+          const begin_weak = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to:</h3>');
+          const end_weak =  doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Habitats:</h3>');
 
-            var ail= "";
-            const debail = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Ailment/s:</h3>');
-            const finail = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to:</h3>')
-            const docail = doc.substring(debail,finail)
-            for (var i=0; i<ailments.length;i++){
-              if (docail.includes(ailments[i])){
-                current_ail = ailments[i].replace(/ /g,'_');
+          var weaknesses = ``; //contains all elements the monster is weak to
 
-                emoj_ail = client.emojis.find(emoji => emoji.name === current_ail+"_ailment");
-                ail = ail.concat(emoj_ail+` `+ailments[i]+`\n`);
+          const doc2 = doc.substring(begin_weak,end_weak);
+          for (var i=0; i < elements.length; i++){
+
+            if (doc2.includes(elements[i])){
+              current_elt = elements[i].replace(/ /g,'_');
+              elt = client.emojis.find(emoji => emoji.name === current_elt+"_weakness");
+              weaknesses = weaknesses.concat(`${elt}`+` `+elements[i]+`\n`)
               }
             }
-            if (ail === ``){
-              ail = `None`
+            if (weaknesses === ``) {console.log("Failure.");
+                                    return "This meownster doesn't even exists !";}
+
+          var ail= "";
+          const begin_ailment = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Ailment/s:</h3>');
+          const end_ailment = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to:</h3>')
+          const docail = doc.substring(begin_ailment,end_ailment)
+          for (var i=0; i<ailments.length;i++){
+            if (docail.includes(ailments[i])){
+              current_ail = ailments[i].replace(/ /g,'_');
+              console.log(current_ail)
+              emoj_ail = client.emojis.find(emoji => emoji.name === current_ail+"_ailment");
+              ail = ail.concat(emoj_ail+` `+ailments[i]+`\n`);
             }
+          }
+          if (ail === ``){
+            ail = `None`
+          }
+          
+            const begin_narrow_document= doc.indexOf('<td colspan="2" style="background-color:#3A5766; color:#ffffff; font-weight:bold; font-size:9pt; text-align:center;"><b>Monster Hunter');
+            const end_narrow_document =  doc.indexOf('<b>Threat Level');
+            var doc_thumb = doc.substring(begin_narrow_document,end_narrow_document);
+            while (doc_thumb.includes('begin_narrow_document')){
 
-            //Now we get the thumbnail
-              const deb2= doc.indexOf('<td colspan="2" style="background-color:#3A5766; color:#ffffff; font-weight:bold; font-size:9pt; text-align:center;"><b>Monster Hunter');
-              const fin2 =  doc.indexOf('<b>Threat Level');
-              var doc_thumb = doc.substring(deb2,fin2);
-              while (doc_thumb.includes('deb2')){
 
-              var doc_thumb = doc_thumb.substring(deb2,fin2);
 
-            }
+              var doc_thumb = doc_thumb.substring(begin_narrow_document,end_narrow_document); //contains the thumbnail
 
-              const deb3 = doc_thumb.indexOf('data-src=')+10;
-              const fin3 = doc_thumb.indexOf('  	 width=')-1;
-              doc_thumb = doc_thumb.substring(deb3,fin3); //url of the thumbnail is between deb3 and fin3
+          }
+          const begin_thumbnail = doc_thumb.indexOf('data-src=')+10;
+          const end_thumbnail = doc_thumb.indexOf('  	 width=')-1;
+          doc_thumb = doc_thumb.substring(begin_thumbnail,end_thumbnail);
+
+
 
               //Now creating the embed message
               var embed = new Discord.RichEmbed()

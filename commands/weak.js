@@ -10,44 +10,36 @@ module.exports = {
     execute(message, args) {
 
       function capitalize(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-            }
+
+        mots = string.split("-")
+        sortie = ""
+
+        for (var i = 0; i < monster_name.length; i++) {
+          mot = mots[i];
+          sortie += mot.charAt(0).toUpperCase() + string.slice(1)+"-";
+        }
+        return sortie.slice(0,sortie.length-1)
+      }
 
 
-      const msg = message.content.toLowerCase();
-      console.log(msg)
+      const msg = message.content.slice(5,message.length).toLowerCase();
       var monstre = "" //will contain the correct name for the url
-
-                    var prettyname = ""
-                      for (var i = 0; i < args.length; i++) {
-                        if (i != 0) {
-                          prettyname = prettyname.concat(" ");
-                           monstre = monstre.concat("_");
-                         }
-                            if (args[i].includes("-")) {
-                                    const mots = args[i].split("-");
-                                    for (var j=0;j < mots.length;j++){
-                                      if (j!=0){
-                                        monstre = monstre.concat("-");
-                                        prettyname = prettyname.concat("-");
-                                      }
-                                    const a = capitalize(mots[j])
-                                    monstre = monstre.concat(a);
-                                    prettyname = prettyname.concat(a);
-                                  }
-                                }
-                         else{
-                              monstre = monstre.concat(capitalize(args[i]))
-                              prettyname = prettyname.concat(capitalize(args[i]));
-                               }
-              }
-
-          const wiki = "https://monsterhunter.fandom.com/wiki/" + monstre //The url we are fetching
+      var prettyname = "" //will contain a pretty name for the monster, with capitalized letters
+      const monster_name = msg.split(" ");
+      for (var i = 0; i < monster_name.length; i++) {
+          name_bits = monster_name[i]
+          monstre +=  capitalize(name_bits) + "_";
+          prettyname +=  capitalize(name_bits) + " ";
+      }
+      
+        monstre = monstre.slice(0,monstre.length-1)
+        prettyname = prettyname.slice(0,prettyname.length-1)
+        const wiki = "https://monsterhunter.fandom.com/wiki/" + monstre //The url we are fetching
 
 
 
 
-          function wik(doc){
+        function wik(doc){
               //first we get all the weaknesses of the monster.
             var weaknesses = ``;
             const deb = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to:</h3>');

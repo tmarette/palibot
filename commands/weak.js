@@ -14,7 +14,7 @@ module.exports = {
         mots = string.split("-")
         sortie = ""
 
-        for (var i = 0; i < monster_name.length; i++) {
+        for (var i = 0; i < mots.length; i++) {
           mot = mots[i];
           sortie += mot.charAt(0).toUpperCase() + string.slice(1)+"-";
         }

@@ -74,6 +74,7 @@ module.exports = {
             for (var i=0; i<ailments.length;i++){
               if (docail.includes(ailments[i])){
                 current_ail = ailments[i].replace(/ /g,'_');
+                console.log(current_ail)
                 emoj_ail = client.emojis.find(emoji => emoji.name === current_ail+"_ailment");
                 ail = ail.concat(emoj_ail+` `+ailments[i]+`\n`);
               }

@@ -10,28 +10,38 @@ module.exports = {
     execute(message, args) {
 
       function capitalize(string) {
-        mots = string.split("-")
-        sortie = ""
-        for (var mot in mots){
-          sortie += mot.charAt(0).toUpperCase() + string.slice(1)+"-";
-        }
-        return sortie.slice(0,sortie.length-1)
-      }
+            return string.charAt(0).toUpperCase() + string.slice(1);
+            }
+
 
       const msg = message.content.toLowerCase();
-      console.log(message)
+      console.log(msg)
       var monstre = "" //will contain the correct name for the url
-      var prettyname = "" //will contain a pretty name for the monster, with capitalized letters
 
-      //Ugly part of the code, to create such strings. It was annoying.
-      const monster_name = msg.split(" ");
-      for (var name_bits in monster_name ) {
-          console.log(name_bits)
-          monstre +=  capitalize(name_bits) + "_";
-          prettyname +=  capitalize(name_bits) + " ";
-          }
-          monstre = monstre.slice(0,monstre.length-1)
-          prettyname = prettyname.slice(0,prettyname.length-1)
+                    var prettyname = ""
+                      for (var i = 0; i < args.length; i++) {
+                        if (i != 0) {
+                          prettyname = prettyname.concat(" ");
+                           monstre = monstre.concat("_");
+                         }
+                            if (args[i].includes("-")) {
+                                    const mots = args[i].split("-");
+                                    for (var j=0;j < mots.length;j++){
+                                      if (j!=0){
+                                        monstre = monstre.concat("-");
+                                        prettyname = prettyname.concat("-");
+                                      }
+                                    const a = capitalize(mots[j])
+                                    monstre = monstre.concat(a);
+                                    prettyname = prettyname.concat(a);
+                                  }
+                                }
+                         else{
+                              monstre = monstre.concat(capitalize(args[i]))
+                              prettyname = prettyname.concat(capitalize(args[i]));
+                               }
+              }
+
           const wiki = "https://monsterhunter.fandom.com/wiki/" + monstre //The url we are fetching
 
 

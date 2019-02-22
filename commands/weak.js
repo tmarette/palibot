@@ -19,13 +19,14 @@ module.exports = {
       }
 
       const msg = message.content.toLowerCase();
-
+      console.log(message)
       var monstre = "" //will contain the correct name for the url
       var prettyname = "" //will contain a pretty name for the monster, with capitalized letters
 
       //Ugly part of the code, to create such strings. It was annoying.
       const monster_name = msg.split(" ");
       for (var name_bits in monster_name ) {
+          console.log(name_bits)
           monstre +=  capitalize(name_bits) + "_";
           prettyname +=  capitalize(name_bits) + " ";
           }

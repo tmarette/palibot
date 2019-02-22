@@ -12,14 +12,15 @@ module.exports = {
       function capitalize(string) {
 
         mots = string.split("-")
-        sortie = ""
+        var sortie = ""
 
         for (var i = 0; i < mots.length; i++) {
           mot = mots[i];
-          sortie += mot.charAt(0).toUpperCase() + string.slice(1)+"-";
+          sortie += mot.charAt(0).toUpperCase() + mot.slice(1) + "-";
         }
         return sortie.slice(0,sortie.length-1)
       }
+
 
 
       const msg = message.content.slice(5,message.length).toLowerCase();

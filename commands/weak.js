@@ -8,52 +8,40 @@ module.exports = {
     name: 'weak',
     description: 'i give one monster weaknesses',
     execute(message, args) {
+
       function capitalize(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
+        mots = string.split("-")
+        sortie = ""
+        for (var mot in mots){
+          sortie += mot.charAt(0).toUpperCase() + string.slice(1)+"-";
         }
+        return sortie.slice(0,sortie.length-1)
+      }
 
       const msg = message.content.toLowerCase();
 
-  		  /*if (args[0].includes( 'talent' )|| args[0].includes('skill'))
-            {message.channel.send('http://fr.mogapedia.wikia.com/wiki/MHGU_-_Liste_des_talents')}
+      var monstre = "" //will contain the correct name for the url
+      var prettyname = "" //will contain a pretty name for the monster, with capitalized letters
 
-  		  else if (args[0] === 'list'){message.channel.send(monstres.split(", ").sort().join(", "));}*/
+      //Ugly part of the code, to create such strings. It was annoying.
 
-        var monstre = ""
-              var prettyname = ""
-                for (var i = 0; i < args.length; i++) {
-                  if (i != 0) {
-                    prettyname = prettyname.concat(" ");
-                     monstre = monstre.concat("_");
-                   }
-                      if (args[i].includes("-")) {
-                              const mots = args[i].split("-");
-                              for (var j=0;j < mots.length;j++){
-                                if (j!=0){
-                                  monstre = monstre.concat("-");
-                                  prettyname = prettyname.concat("-");
-                                }
-                              const a = capitalize(mots[j])
-                              monstre = monstre.concat(a);
-                              prettyname = prettyname.concat(a);
-                            }
-                          }
-                   else{
-                        monstre = monstre.concat(capitalize(args[i]))
-                        prettyname = prettyname.concat(capitalize(args[i]));
-                         }
-        }
+      for (var i = 0; i < args.length; i++) {
+          const a = capitalize(mots[j])
+          monstre += a + "_";
+          prettyname += a + " ";
+          }
+          monstre = monstre.slice(0,monstre.length-1)
+          prettyname = prettyname.slice(0,prettyname.length-1)
+          const wiki = "https://monsterhunter.fandom.com/wiki/" + monstre //The url we are fetching
 
-          const wiki = "https://monsterhunter.fandom.com/wiki/".concat(monstre)
-
-          function wik(doc){
 
 
 
+          function wik(doc){
+              //first we get all the weaknesses of the monster.
+            var weaknesses = ``;
             const deb = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to:</h3>');
             const fin =  doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Habitats:</h3>');
-
-            var weaknesses = ``; //contains all elements the monster is weak to
 
             const doc2 = doc.substring(deb,fin);
             for (var i=0; i < elements.length; i++){
@@ -65,7 +53,9 @@ module.exports = {
                 }
               }
               if (weaknesses === ``) {console.log("Failure.");
-                                      return "This meownster doesn't even exists !";}
+                                      return "This meownster doesn't even exists !";} //if no weakness found, then the url might me wrong, thus indicating the monster doesnt exists
+
+            //Now we get its ailments.
 
             var ail= "";
             const debail = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Ailment/s:</h3>');
@@ -82,21 +72,23 @@ module.exports = {
             if (ail === ``){
               ail = `None`
             }
+
+            //Now we get the thumbnail
               const deb2= doc.indexOf('<td colspan="2" style="background-color:#3A5766; color:#ffffff; font-weight:bold; font-size:9pt; text-align:center;"><b>Monster Hunter');
               const fin2 =  doc.indexOf('<b>Threat Level');
               var doc_thumb = doc.substring(deb2,fin2);
               while (doc_thumb.includes('deb2')){
 
-
-
-              var doc_thumb = doc_thumb.substring(deb2,fin2); //contains the thumbnail
+              var doc_thumb = doc_thumb.substring(deb2,fin2);
 
             }
+
               const deb3 = doc_thumb.indexOf('data-src=')+10;
               const fin3 = doc_thumb.indexOf('  	 width=')-1;
-              doc_thumb = doc_thumb.substring(deb3,fin3);
+              doc_thumb = doc_thumb.substring(deb3,fin3); //url of the thumbnail is between deb3 and fin3
 
-                var embed = new Discord.RichEmbed()
+              //Now creating the embed message
+              var embed = new Discord.RichEmbed()
               .setColor("RANDOM")
               .setTitle("Monster : ".concat(prettyname))
               .setURL(wiki)
@@ -104,20 +96,15 @@ module.exports = {
               .addField("Weakness(es) : ", weaknesses, true)
               .addField("Ailment(s) : ",ail, true )
 
+              if (doc_thumb.includes(".png")){embed.setThumbnail(doc_thumb);} //If there is a fitting image, then it is the thumbnail
 
-              if (doc_thumb.includes(".png")){embed.setThumbnail(doc_thumb);}
-              else {console.log("Success.");
-                    return {embed};}
-
-            console.log("Success.");
-            return ({embed})
+              console.log("Success."); //Let's put in the logs that the request is a success
+              return ({embed}) //Let's return the final message
             }
-        console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);
+        console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`); //Nice logs
           fetch(wiki)
               .then(res => res.text())
               .then(body => message.channel.send(wik(body)))
-
-
 
           }
 

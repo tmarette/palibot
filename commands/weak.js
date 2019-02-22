@@ -59,7 +59,7 @@ module.exports = {
             for (var i=0; i < elements.length; i++){
 
               if (doc2.includes(elements[i])){
-                current_elt = elements[i].replace(' ','_');
+                current_elt = elements[i].replace(/ /g,'_');
                 elt = client.emojis.find(emoji => emoji.name === current_elt+"_weakness");
                 weaknesses = weaknesses.concat(`${elt}`+` `+elements[i]+`\n`)
                 }

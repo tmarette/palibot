@@ -24,11 +24,10 @@ module.exports = {
       var prettyname = "" //will contain a pretty name for the monster, with capitalized letters
 
       //Ugly part of the code, to create such strings. It was annoying.
-
-      for (var i = 0; i < args.length; i++) {
-          const a = capitalize(mots[j])
-          monstre += a + "_";
-          prettyname += a + " ";
+      const monster_name = msg.split(" ");
+      for (var name_bits in monster_name ) {
+          monstre +=  capitalize(name_bits) + "_";
+          prettyname +=  capitalize(name_bits) + " ";
           }
           monstre = monstre.slice(0,monstre.length-1)
           prettyname = prettyname.slice(0,prettyname.length-1)

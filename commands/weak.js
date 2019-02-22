@@ -53,13 +53,14 @@ module.exports = {
 
             if (doc2.includes(elements[i])){
               current_elt = elements[i].replace(/ /g,'_');
-              elt = client.emojis.find(emoji => emoji.name === current_elt+"_weakness");
-              weaknesses = weaknesses.concat(`${elt}`+` `+elements[i]+`\n`)
+              elt = client.emojis.find(emoji => emoji.name === current_elt + "_weakness");
+              weaknesses = weaknesses.concat(`${elt}` + ` ` + elements[i] + `\n`)
               }
             }
           if (weaknesses === ``) {
             console.log("Failure.");
-            return "This meownster doesn't even exists !";}
+            return "This meownster doesn't even exists !";
+          }
 
 
           //Now we create 'ail', the string containing the ailments.
@@ -70,10 +71,9 @@ module.exports = {
           const docail = doc.substring(begin_ailment,end_ailment)
           for (var i=0; i<ailments.length;i++){
             if (docail.includes(ailments[i])){
-              current_ail = ailments[i].replace(/ /g,'_');
-              console.log(current_ail)
-              emoj_ail = client.emojis.find(emoji => emoji.name === current_ail+"_ailment");
-              ail = ail.concat(emoj_ail+` `+ailments[i]+`\n`);
+              current_ail = ailments[i].replace(/ /g, '_');
+              emoj_ail = client.emojis.find(emoji => emoji.name === current_ail + "_ailment");
+              ail = ail.concat(emoj_ail + ` ` + ailments[i]+`\n`);
             }
           }
           if (ail === ``){

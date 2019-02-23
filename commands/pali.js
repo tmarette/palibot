@@ -6,7 +6,7 @@ module.exports = {
     execute(message, args) {
       const msg = message.content.toLowerCase();
 
-      if msg.contains('help'){
+      if msg.includes('help'){
         var titre = "Hi ! I'm the palibot !");
   			const embed = new Discord.RichEmbed()
   		  .setTitle(titre)

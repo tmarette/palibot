@@ -14,11 +14,12 @@ module.exports = {
   		  .setTitle(titre)
   		  .setColor("RANDOM")
   		  .setDescription("I'm here to help you hunt big meownsters ! :smiley_cat: ")
-
+        .addBlankField(true)
   		  .addField("How to use me.",
-  		    "```weak <monster>``` makes me display one monster's weaknesses and ailments. \n\n ")
+  		    "```weak <monster>``` makes me display one monster's weaknesses and ailments.")
+        .addBlankField(true)
   		  .addField("What if I can't find the monster ?", "Maybe you typed the monster's name wrong.\n I can understand for instance ```weak yIAN Kut-KU``` but not ```weak yian kut ku``` because of the missing hyphen.\n\n"
-        +"Otherwise, maybe it's a bug. If you want to see it fixed, please pm /u/yasefumi on reddit :)\n\n")
+        +"Otherwise, maybe it's a bug. If you want to see it fixed, please pm /u/yasefumi on reddit :)")
 
   		  .addBlankField(true)
   		  .addField("What if I was a good bot ?", "You can pet me with the command ```pali pet```");

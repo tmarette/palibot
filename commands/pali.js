@@ -4,9 +4,11 @@ module.exports = {
     description: 'I mostly provide help on how to use the bot',
     aliases: ['palibot'],
     execute(message, args) {
+
+
       const msg = message.content.toLowerCase();
 
-      if msg.includes('help'){
+      if (msg.includes('help')){
         var titre = "Hi ! I'm the palibot !");
   			const embed = new Discord.RichEmbed()
   		  .setTitle(titre)

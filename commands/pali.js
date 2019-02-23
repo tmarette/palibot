@@ -24,10 +24,17 @@ module.exports = {
   		  .addBlankField(true)
   		  .addField("What if I was a good bot ?", "You can pet me with the command ```pali pet```");
         embed.setThumbnail('https://ih0.redbubble.net/image.98407351.3167/st%2Csmall%2C215x235-pad%2C210x230%2Cf8f8f8.lite-1u2.jpg');
-
+        console.log(`${message.guild.name}` + ` (${message.guild.memberCount} users) ${message.author.username} needed help.`)
   		  message.channel.send({embed});
   			return;
 
 		  }
+      if (msg.includes('pet')){
+        message.channel.send('Thank you master *purr purr*')
+        console.log(`${message.guild.name}` + ` (${message.guild.memberCount} users) ${message.author.username} has pet me.`)
+        message.react('❤️');
+        return;
+      }
+      return;
     }
   }

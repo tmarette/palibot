@@ -21,7 +21,7 @@ module.exports = {
 
   		  .addBlankField(true)
   		  .addField("What if I was a good bot ?", "You can pet me with the command ```pali pet```", true);
-        .setThumbnail('https://ih0.redbubble.net/image.98407351.3167/st%2Csmall%2C215x235-pad%2C210x230%2Cf8f8f8.lite-1u2.jpg');
+        embed.setThumbnail('https://ih0.redbubble.net/image.98407351.3167/st%2Csmall%2C215x235-pad%2C210x230%2Cf8f8f8.lite-1u2.jpg');
 
   		  message.channel.send({embed});
   			return;

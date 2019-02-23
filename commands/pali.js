@@ -16,9 +16,9 @@ module.exports = {
   		  .setDescription("I'm here to help you hunt big meownsters ! :smiley_cat: ")
         .addBlankField(true)
   		  .addField("How to use me.",
-  		    "```weak <monster>``` makes me display one monster's weaknesses and ailments.")
+  		    "```weak <monster>```makes me display one monster's weaknesses and ailments.")
         .addBlankField(true)
-  		  .addField("What if I can't find the monster ?", "Maybe you typed the monster's name wrong.\n I can understand for instance ```weak yIAN Kut-KU``` but not ```weak yian kut ku``` because of the missing hyphen.\n\n"
+  		  .addField("What if I can't find the monster ?", "Maybe you typed the monster's name wrong.\n I can understand for instance```weak yIAN Kut-KU```but not```weak yian kut ku```because of the missing hyphen.\n\n"
         +"Otherwise, maybe it's a bug. If you want to see it fixed, please pm [/u/yasefumi](https://www.reddit.com/message/compose/?to=Yasefumi) on reddit :)")
 
   		  .addBlankField(true)

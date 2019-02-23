@@ -9,7 +9,7 @@ module.exports = {
       const msg = message.content.toLowerCase();
 
       if (msg.includes('help')){
-        var titre = "Hi ! I'm the palibot !");
+        var titre = "Hi ! I'm the palibot !";
   			const embed = new Discord.RichEmbed()
   		  .setTitle(titre)
   		  .setColor("RANDOM")

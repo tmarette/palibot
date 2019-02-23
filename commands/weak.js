@@ -60,7 +60,7 @@ module.exports = {
             }
           if (weaknesses === ``) {
             console.log("Failure.");
-            return "This meownster doesn't even exists !";
+            return "Sorry Master, I can't find the meownster ! :crying_cat_face:";
           }
 
 
@@ -83,7 +83,7 @@ module.exports = {
 
           //We now create the embed.
 
-          const begin_narrow_document= doc.indexOf('<td colspan="2" style="background-color:#3A5766; color:#ffffff; font-weight:bold; font-size:9pt; text-align:center;"><b>Monster Hunter');
+            const begin_narrow_document= doc.indexOf('<td colspan="2" style="background-color:#3A5766; color:#ffffff; font-weight:bold; font-size:9pt; text-align:center;"><b>Monster Hunter');
           const end_narrow_document =  doc.indexOf('<b>Threat Level');
           var doc_thumb = doc.substring(begin_narrow_document,end_narrow_document);
 

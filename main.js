@@ -16,6 +16,7 @@ const cooldowns = new Discord.Collection();
 
 client.once('ready', () => {
 	console.log(`Ready to serve on ${client.guilds.size} servers, for ${client.users.size} users.`);
+	client.user.setActivity('pali help')
 });
 
 client.on('message', message => {

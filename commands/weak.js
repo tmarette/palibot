@@ -1,8 +1,6 @@
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
-const elements = ['Fire','Ice','Dragon','Thunder','Water'];
-const ailments = ['Poison','Deadly Poison', 'Noxious Poison', 'Paralysis', 'Sleep', 'Stun', 'Defense Down', 'Soiled', 'Fatigue','Snowman','Muddy','Blastblight','Frenzy Virus','Webbed','Bleeding','Confusion','Bubbleblight','Mucus','Ossified','Effluvium','Fireblight','Waterblight','Thunderblight','Iceblight','Dragonblight'];
-
+const {elements,ailments } = require('../config.json');
 
 module.exports = {
     name: 'weak',
@@ -83,7 +81,7 @@ module.exports = {
 
           //We now create the embed.
 
-            const begin_narrow_document= doc.indexOf('<td colspan="2" style="background-color:#3A5766; color:#ffffff; font-weight:bold; font-size:9pt; text-align:center;"><b>Monster Hunter');
+          const begin_narrow_document= doc.indexOf('<td colspan="2" style="background-color:#3A5766; color:#ffffff; font-weight:bold; font-size:9pt; text-align:center;"><b>Monster Hunter');
           const end_narrow_document =  doc.indexOf('<b>Threat Level');
           var doc_thumb = doc.substring(begin_narrow_document,end_narrow_document);
 
@@ -95,8 +93,76 @@ module.exports = {
           const end_thumbnail = doc_thumb.indexOf('  	 width=')-1;
           doc_thumb = doc_thumb.substring(begin_thumbnail,end_thumbnail);
 
+          //Finally, let's add one random note.
+          const begin_trivia = doc.indexOf('<h2><span class="mw-headline" id="Notes">Notes</span></h2>');
+          var doc_trivia = doc.substring(begin_trivia);
+          const end_trivia = doc_trivia.indexOf('</p></div>')-6;
+          var doc_trivia = doc_trivia.substring(0,end_trivia);
+          const begin_narrow_trivia = doc_trivia.indexOf("<ul>")+4;
+          doc_trivia = doc_trivia.substring(begin_narrow_trivia);
+          const garbage_tab = doc_trivia.split("<li>");
+          const trivia_tab = []
+          var incrementer = true
 
-              //Now creating the embed message
+          //We have to deal with lists within lists....
+
+          for (var i = 0; i < garbage_tab.length;i++){
+            if (garbage_tab[i].includes("</ul>")){
+              incrementer = true;
+              trivia_tab[trivia_tab.length-1]+="-"+garbage_tab[i]
+            }
+            else if (garbage_tab[i].includes("<ul>")){
+              incrementer = false;
+              trivia_tab.push(garbage_tab[i])
+            }
+            else {
+              if (incrementer){
+                trivia_tab.push(garbage_tab[i])
+              }
+            else {
+                trivia_tab[trivia_tab.length-1]+="-"+garbage_tab[i]
+              }
+            }
+          }
+
+          for (var i = 1; i<trivia_tab.length;i++){
+            if (trivia_tab[i].length <= 0 || trivia_tab[i].length>=1024){
+              trivia_tab.splice(i, 1);
+            }
+          }
+          const trivia = trivia_tab[Math.floor((Math.random())*trivia_tab.length)]
+
+
+
+          //now we cleanup the trivia.
+          const trivia_bits = trivia.split('href=')
+          var final_trivia = trivia_bits[0]
+          for (var i = 1; i<trivia_bits.length;i++){
+            var ugly_trivia = trivia_bits[i]
+            var link = "https://monsterhunter.fandom.com"
+            var begin_link = 1
+            var end_link = ugly_trivia.indexOf("title")
+            const wikilink = ugly_trivia.substring(begin_link,end_link-2).replace(/\(/g, "%28").replace(/\)/g,"%29")
+            link += wikilink
+            begin_link = ugly_trivia.indexOf(">")+1
+            end_link = ugly_trivia.indexOf("<")
+            const link_name = ugly_trivia.substring(begin_link,end_link)
+            var end_of_trivia = ugly_trivia.substring(ugly_trivia.indexOf("</a>")+4)
+            final_trivia += "["+link_name+"]("+link+")"+end_of_trivia
+
+          }
+
+          final_trivia = final_trivia.replace(/<i>/g, "")
+            .replace(/<a/g, "")
+            .replace(/<\/i>/g, "")
+            .replace(/<\/li>/g, '')
+            .replace(/<ul>/g, '')
+            .replace(/<\/ul>/g,'')
+
+
+
+
+          //Now creating the embed message
           var embed = new Discord.RichEmbed()
             .setColor("RANDOM")
             .setTitle("Monster : ".concat(prettyname))
@@ -104,7 +170,9 @@ module.exports = {
             //.setDescription(wiki)
             .addField("Weakness(es) : ", weaknesses, true)
             .addField("Ailment(s) : ",ail, true )
-
+            if (trivia.length > 0 && trivia.length<1024){
+              embed.addField("Note :",final_trivia)
+            }
             if (doc_thumb.includes(".png")){embed.setThumbnail(doc_thumb);} //If there is a fitting image, then it is the thumbnail
 
               console.log("Success."); //Let's put in the logs that the request is a success

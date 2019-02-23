@@ -44,8 +44,8 @@ module.exports = {
 
           //We first create 'weaknesses', the string containing the monster's weaknesses.
 
-          const begin_weak = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to:</h3>');
-          const end_weak =  doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Habitats:</h3>');
+          const begin_weak = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to');
+          const end_weak =  doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Habitats');
 
           var weaknesses = ``;
 
@@ -67,8 +67,8 @@ module.exports = {
           //Now we create 'ail', the string containing the ailments.
 
           var ail= "";
-          const begin_ailment = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Ailment/s:</h3>');
-          const end_ailment = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to:</h3>')
+          const begin_ailment = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Ailment');
+          const end_ailment = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to')
           const docail = doc.substring(begin_ailment,end_ailment)
           for (var i=0; i<ailments.length;i++){
             if (docail.includes(ailments[i])){

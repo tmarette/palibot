@@ -132,9 +132,13 @@ module.exports = {
               fetch(wiki)
                   .then(res => res.text())
                   .then(body => message.channel.send(wik(body)))
+                a_trouve = true;
               break;
             }
           }
+        }
+        if (!a_trouve){
+          message.channel.send("Sorry Master, I can't find the meownster ! :crying_cat_face:")
         }
         console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " => "+ prettyname + ` (request by ${message.author.username})`); //Nice logs
     }}

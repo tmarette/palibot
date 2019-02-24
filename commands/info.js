@@ -193,9 +193,11 @@ module.exports = {
           }
         //Otherwise we look for the first occurence of the monster in the list
         if (!a_trouve){
+
           for (var i=0;i<monster_list.length;i++){
             if (monster_list[i].includes(monstre)){
               prettyname=monster_list[i].replace(/_/g," ")
+              prettyname = prettyname.charAt(0).toUpperCase() + prettyname.slice(1)
               wiki = "https://monsterhunter.fandom.com/wiki/" + monster_list[i]
               fetch(wiki)
                   .then(res => res.text())

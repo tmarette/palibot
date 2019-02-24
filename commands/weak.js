@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
-const {elements,ailments } = require('../config.json');
+const {elements,ailments,monster_list } = require('../config.json');
 
 module.exports = {
     name: 'weak',
@@ -58,7 +58,7 @@ module.exports = {
             }
           if (weaknesses === ``) {
             console.log("Failure.");
-            return "Sorry Meowster, I can't find the meownster ! :crying_cat_face:";
+            return "Sorry Master, I can't find the meownster ! :crying_cat_face:";
           }
 
 

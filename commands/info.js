@@ -197,7 +197,7 @@ module.exports = {
         if (!a_trouve){
           monstre = monstre.charAt(0).toLowerCase() + prettyname.slice(1)
           for (var i=0;i<monster_list.length;i++){
-            if (monster_list[i].includes(monstre)){
+            if (monster_list[i].includes(monstre) || monster_list[i].includes(monstre2)){
               prettyname=monster_list[i].replace(/_/g," ")
               prettyname = prettyname.charAt(0).toUpperCase() + prettyname.slice(1)
               wiki = "https://monsterhunter.fandom.com/wiki/" + monster_list[i]

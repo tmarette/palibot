@@ -8,4 +8,4 @@ just invite the bot to your server through the following link :
 and type 'weak monster' (like 'weak rathian' or 'weak yian kut-ku' or 'weak gore magala') in chat to get a monster specific weakness(es), ailment(s) and a random fact about the monster !
 You can also type 'pali help' in order to show help if you are unsure on how to use the bot.
 
-![prettybot](https://imgur.com/a/W1Y3wDG)
+![prettybot](https://i.imgur.com/nxiElvt.png)

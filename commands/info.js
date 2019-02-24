@@ -111,7 +111,7 @@ module.exports = {
               console.log("Success."); //Let's put in the logs that the request is a success
               return ({embed}) //Let's return the final message
             }
-        console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`); //Nice logs
+        console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " => "+ prettyname + ` (request by ${message.author.username})`); //Nice logs
         fetch(wiki)
             .then(res => res.text())
             .then(body => message.channel.send(wik(body)))

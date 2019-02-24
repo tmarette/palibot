@@ -159,7 +159,9 @@ module.exports = {
             .replace(/<ul>/g, '')
             .replace(/<\/ul>/g,'')
 
-
+            if (final_trivia.includes("class")){
+              final_trivia = ""
+            }
 
 
           //Now creating the embed message

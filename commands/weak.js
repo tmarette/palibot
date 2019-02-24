@@ -140,5 +140,7 @@ module.exports = {
         if (!a_trouve){
           message.channel.send("Sorry Master, I can't find the meownster ! :crying_cat_face:")
         }
-        console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " => "+ prettyname + ` (request by ${message.author.username})`); //Nice logs
+        try{console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " => "+ prettyname + ` (request by ${message.author.username})`);} catch(e) {
+        console.log(e.stack);
+    } //Nice logs
     }}

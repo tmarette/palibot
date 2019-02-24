@@ -82,10 +82,6 @@ module.exports = {
           }
 
           //We now create the embed.
-          var doc_thumb = ""
-          fetch("https://monsterhunter.fandom.com/wiki/Monster_List")
-            .then(res => res.text())
-            .then(body => doc_thumb = body.text())
 
           const begin_narrow_document= doc.indexOf('<td colspan="2" style="background-color:#3A5766; color:#ffffff; font-weight:bold; font-size:9pt; text-align:center;"><b>Monster Hunter');
           const end_narrow_document =  doc.indexOf('<b>Threat Level');

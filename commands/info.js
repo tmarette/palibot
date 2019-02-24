@@ -35,14 +35,14 @@ module.exports = {
         prettyname = prettyname.slice(0,prettyname.length-1)
         var wiki = "https://monsterhunter.fandom.com/wiki/" + monstre //The url we are fetching
 
-
+        if (monstre==="Cornichon"){
+          message.channel.send("coucou cha :P :p <3 <3 OwOO jdr")
+        }
 
 
         function wik(doc){
           //We first create 'weaknesses', the string containing the monster's weaknesses.
-          if (monstre==="Cornichon"){
-            return "coucou cha :P :p <3 <3 OwOO"
-          }
+
 
           const begin_weak = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to');
           const end_weak =  doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Habitats');

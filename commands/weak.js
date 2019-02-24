@@ -58,7 +58,7 @@ module.exports = {
             }
           if (weaknesses === ``) {
             console.log("Failure.");
-            return "Sorry Master, I can't find the meownster ! :crying_cat_face:";
+            return "Sorry Meowster, I can't find the meownster ! :crying_cat_face:";
           }
 
 

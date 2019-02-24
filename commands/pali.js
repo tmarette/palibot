@@ -16,13 +16,13 @@ module.exports = {
   		  .setDescription("I'm here to help you hunt big meownsters ! :smiley_cat: ")
         .addBlankField(true)
   		  .addField("How to use me.",
-  		    "```info <monster>```makes me display one monster's weaknesses, ailments, and a\nrandom trivia\n ```weak <monster>``` only makes me display its weaknesses and ailments.\nPlease note that I can understand only partial monster name (weak jho`` will display information about deviljho!)")
+  		    "```info <monster>```makes me display one monster's weaknesses, ailments, and a\nrandom trivia\n ```weak <monster>``` only makes me display its weaknesses and ailments.\nPlease note that I can understand only partial monster name (`weak jho` will display information about deviljho!)")
         .addBlankField(true)
   		  .addField("What if I can't find the meownster ?", "Maybe you typed the meownster's name wrong.\nI can understand for instance `weak yIAN Kut-KU` but I can't\nunderstand `weak yian kut ku` because of the missing hyphen.\n\n"
         +"Otherwise, maybe it's a bug. If you want to see it fixed, please pm [/u/yasefumi](https://www.reddit.com/message/compose/?to=Yasefumi) on reddit :)\n(I know the Xeno'jiva is bugged i'm working on it)")
 
   		  .addBlankField(true)
-  		  .addField("What if I was a good bot ?", "You can pet me with the command ```pali pet`` nyaa`");
+  		  .addField("What if I was a good bot ?", "You can pet me with the command ```pali pet```");
         embed.setThumbnail('https://ih0.redbubble.net/image.98407351.3167/st%2Csmall%2C215x235-pad%2C210x230%2Cf8f8f8.lite-1u2.jpg');
         try {console.log(`${message.guild.name}` + ` (${message.guild.memberCount} users) ${message.author.username} needed help.`)} catch(e) {
         console.log(e.stack);

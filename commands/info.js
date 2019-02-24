@@ -40,7 +40,9 @@ module.exports = {
 
         function wik(doc){
           //We first create 'weaknesses', the string containing the monster's weaknesses.
-
+          if (monstre==="Cornichon"){
+            return "coucou cha :P :p <3 <3 OwOO"
+          }
 
           const begin_weak = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to');
           const end_weak =  doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Habitats');
@@ -193,7 +195,7 @@ module.exports = {
           }
         //Otherwise we look for the first occurence of the monster in the list
         if (!a_trouve){
-
+          monstre = monstre.charAt(0).toLowerCase() + prettyname.slice(1)
           for (var i=0;i<monster_list.length;i++){
             if (monster_list[i].includes(monstre)){
               prettyname=monster_list[i].replace(/_/g," ")

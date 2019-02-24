@@ -1,4 +1,4 @@
 {
-  "elements" : "Fire,Ice,Dragon,Thunder,Water",
-  "ailments" : "Poison,Deadly Poison, Noxious Poison, Paralysis, Sleep, Stun, Defense Down, Soiled, Fatigue,Snowman,Muddy,Blastblight,Frenzy Virus,Webbed,Bleeding,Confusion,Bubbleblight,Mucus,Ossified,Effluvium,Fireblight,Waterblight,Thunderblight,Iceblight,Dragonblight"
+  "elements" : ["Fire","Ice","Dragon","Thunder","Water"],
+  "ailments" : ["Poison","Deadly Poison", "Noxious Poison", "Paralysis", "Sleep", "Stun", "Defense Down", "Soiled", "Fatigue","Snowman","Muddy","Blastblight","Frenzy Virus","Webbed","Bleeding","Confusion","Bubbleblight","Mucus","Ossified","Effluvium","Fireblight","Waterblight","Thunderblight","Iceblight","Dragonblight"]
   }

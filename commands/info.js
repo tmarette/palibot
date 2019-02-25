@@ -59,8 +59,7 @@ module.exports = {
               }
             }
           if (weaknesses === ``) {
-            console.log("Failure.");
-            return "Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:";
+            weaknesses = `None`
           }
 
 

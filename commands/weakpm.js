@@ -179,33 +179,34 @@ module.exports = {
               console.log("Success."); //Let's put in the logs that the request is a success
               return ({embed}) //Let's return the final message
             }
-        var a_trouve = false
-        //If the monster is in the list
-        for (var i=0;i<monster_list.length;i++){
-          if (monstre === monster_list[i]){
-          fetch(wiki)
-              .then(res => res.text())
-              .then(body => message.author.sendMessage(wik(body)))
-              a_trouve = true
-              break;
-            }
-          }
-        //Otherwise we look for the first occurence of the monster in the list
-        if (!a_trouve){
-          monstre2 = monstre.charAt(0).toLowerCase() + prettyname.slice(1)
-          for (var i=0;i<monster_list.length;i++){
-            if (monster_list[i].includes(monstre) || monster_list[i].includes(monstre2)){
-              prettyname=monster_list[i].replace(/_/g," ")
-              prettyname = prettyname.charAt(0).toUpperCase() + prettyname.slice(1)
-              wiki = "https://monsterhunter.fandom.com/wiki/" + monster_list[i]
+            var a_trouve = false
+            //If the monster is in the list
+            for (var i=0;i<monster_list.length;i++){
+              if (monstre === monster_list[i]){
               fetch(wiki)
                   .then(res => res.text())
                   .then(body => message.author.sendMessage(wik(body)))
-                  a_trouve = true;
-                break;
+                  a_trouve = true
+                  break;
+                }
               }
-            }
-          }
+            //Otherwise we look for the first occurence of the monster in the list
+            if (!a_trouve){
+              monstre2 = monstre.charAt(0).toLowerCase() + prettyname.slice(1)
+              for (var i=0;i<monster_list.length;i++){
+                if (monster_list[i].includes(monstre) || monster_list[i].includes(monstre2)){
+                  monstre = monster_list[i]
+                  prettyname=monster_list[i].replace(/_/g," ")
+                  prettyname = prettyname.charAt(0).toUpperCase() + prettyname.slice(1)
+                  wiki = "https://monsterhunter.fandom.com/wiki/" + monster_list[i]
+                  fetch(wiki)
+                      .then(res => res.text())
+                      .then(body => message.author.sendMessage(wik(body)))
+                      a_trouve = true;
+                    break;
+                  }
+                }
+              }
           if (!a_trouve){
             message.author.sendMessage("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
           }

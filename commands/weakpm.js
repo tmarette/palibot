@@ -179,6 +179,7 @@ module.exports = {
               console.log("Success."); //Let's put in the logs that the request is a success
               return ({embed}) //Let's return the final message
             }
+
             var a_trouve = false
             //If the monster is in the list
             for (var i=0;i<monster_list.length;i++){
@@ -207,11 +208,11 @@ module.exports = {
                   }
                 }
               }
-          if (!a_trouve){
-            message.author.sendMessage("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
-          }
-        try{console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);} catch(e) {
-        console.log(e.stack);
-    } //Nice logs
+              if (!a_trouve){
+                message.channel.send("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
+              }
+            try{console.log(message.author.sendMessage + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);} catch(e) {
+            console.log(e.stack);
+        } //Nice logs
 
-    }}
+        }}

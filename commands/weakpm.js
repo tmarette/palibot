@@ -184,7 +184,7 @@ module.exports = {
                   .then(res => res.text())
                   .then(body => message.author.createDM()
                                   .then(
-                                    message.author.dmChannel.send("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
+                                    message.author.dmChannel.send(wik(body))
                                   )
                             )
                   a_trouve = true
@@ -204,7 +204,7 @@ module.exports = {
                       .then(res => res.text())
                       .then(body => message.author.createDM()
                                       .then(
-                                        message.author.dmChannel.send("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
+                                        message.author.dmChannel.send(wik(body))
                                       )
                             )
                       a_trouve = true;

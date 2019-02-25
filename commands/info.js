@@ -182,10 +182,13 @@ module.exports = {
             //If the monster is in the list
             for (var i=0;i<monster_list.length;i++){
               if (monstre === monster_list[i]){
-              fetch(wiki)
-                  .then(res => res.text())
-                  .then(body => message.channel.send(wik(body)))
-                  .catch(console.error)
+                fetch(wiki)
+                    .then(res => res.text())
+                    .then(body => message.author.createDM()
+                                    .then(salon => salon.send(wik(body)))
+                                    .catch(console.error))
+                    .catch(console.error)
+
                   a_trouve = true
                   break;
                 }
@@ -201,8 +204,11 @@ module.exports = {
                   wiki = "https://monsterhunter.fandom.com/wiki/" + monster_list[i]
                   fetch(wiki)
                       .then(res => res.text())
-                      .then(body => message.channel.send(wik(body)))
+                      .then(body => message.author.createDM()
+                                      .then(salon => salon.send(wik(body)))
+                                      .catch(console.error))
                       .catch(console.error)
+
                       a_trouve = true;
                     break;
                   }

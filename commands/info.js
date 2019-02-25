@@ -35,9 +35,6 @@ module.exports = {
         prettyname = prettyname.slice(0,prettyname.length-1)
         var wiki = "https://monsterhunter.fandom.com/wiki/" + monstre //The url we are fetching
 
-        if (monstre==="Cornichon"){
-          message.channel.send("coucou cha :P :p <3 <3 OwOO jdr")
-        }
 
 
         function wik(doc){

@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
 const {elements,ailments,monster_list } = require('../config.json');
-
+const {src_thumbnail} = require('../src_thb.json')  
 module.exports = {
     name: 'info',
     description: 'i give one monster info',
@@ -82,17 +82,13 @@ module.exports = {
 
           //We now create the embed.
 
-          const begin_narrow_document= doc.indexOf('<td colspan="2" style="background-color:#3A5766; color:#ffffff; font-weight:bold; font-size:9pt; text-align:center;"><b>Monster Hunter');
-          const end_narrow_document =  doc.indexOf('<b>Threat Level');
-          var doc_thumb = doc.substring(begin_narrow_document,end_narrow_document);
-
-          while (doc_thumb.includes('begin_narrow_document')){
-            var doc_thumb = doc_thumb.substring(begin_narrow_document,end_narrow_document); //contains the thumbnail
-          }
-
-          const begin_thumbnail = doc_thumb.indexOf('data-src=')+10;
-          const end_thumbnail = doc_thumb.indexOf('  	 width=')-1;
-          doc_thumb = doc_thumb.substring(begin_thumbnail,end_thumbnail);
+                  var doc_thumb = src_thumbnail
+          var begin_narrow_document= doc_thumb.indexOf(monstre);
+          doc_thumb=doc_thumb.substring(begin_narrow_document,doc_thumb.length-1)
+          begin_narrow_document = doc_thumb.indexOf('data-src=')+10
+          doc_thumb=doc_thumb.substring(begin_narrow_document,doc_thumb.length-1)
+          const end_thumbnail = doc_thumb.indexOf('.png')+4;
+          doc_thumb = doc_thumb.substring(0,end_thumbnail);
 
           //Finally, let's add one random note.
           const begin_trivia = doc.indexOf('<h2><span class="mw-headline" id="Notes">Notes</span></h2>');

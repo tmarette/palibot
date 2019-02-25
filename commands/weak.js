@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
 const {elements,ailments,monster_list } = require('../config.json');
-
+const {src_thumbnail} = require('../src_thb.json')
 module.exports = {
     name: 'weak',
     description: 'i give one monster\'s weaknesses and ailments',
@@ -80,20 +80,13 @@ module.exports = {
 
           //We now create the embed.
 
-          const begin_narrow_document= doc.indexOf('<td colspan="2" style="background-color:#3A5766; color:#ffffff; font-weight:bold; font-size:9pt; text-align:center;"><b>Monster Hunter');
-          const end_narrow_document =  doc.indexOf('<b>Threat Level');
-          var doc_thumb = doc.substring(begin_narrow_document,end_narrow_document);
-
-          while (doc_thumb.includes('begin_narrow_document')){
-            var doc_thumb = doc_thumb.substring(begin_narrow_document,end_narrow_document); //contains the thumbnail
-          }
-
-          const begin_thumbnail = doc_thumb.indexOf('data-src=')+10;
-          const end_thumbnail = doc_thumb.indexOf('  	 width=')-1;
-          doc_thumb = doc_thumb.substring(begin_thumbnail,end_thumbnail);
-
-
-
+          var doc_thumb = src_thumbnail
+          var begin_narrow_document= doc_thumb.indexOf(monstre);
+          doc_thumb=doc_thumb.substring(begin_narrow_document,doc_thumb.length-1)
+          begin_narrow_document = doc_thumb.indexOf('data-src=')+10
+          doc_thumb=doc_thumb.substring(begin_narrow_document,doc_thumb.length-1)
+          const end_thumbnail = doc_thumb.indexOf('.png')+4;
+          doc_thumb = doc_thumb.substring(0,end_thumbnail);
 
 
           //Now creating the embed message
@@ -111,36 +104,39 @@ module.exports = {
               return ({embed}) //Let's return the final message
             }
 
-        var a_trouve = false
-        //If the monster is in the list
-        for (var i=0;i<monster_list.length;i++){
-          if (monstre === monster_list[i]){
-          fetch(wiki)
-              .then(res => res.text())
-              .then(body => message.channel.send(wik(body)))
-              a_trouve = true
-              break;
-            }
-          }
-        //Otherwise we look for the first occurence of the monster in the list
-        if (!a_trouve){
-          var monstre2 = monstre.charAt(0).toLowerCase() + prettyname.slice(1)
-          for (var i=0;i<monster_list.length;i++){
-            if (monster_list[i].includes(monstre) || monster_list[i].includes(monstre2)){
-              prettyname=monster_list[i].replace(/_/g," ")
-              wiki = "https://monsterhunter.fandom.com/wiki/" + monster_list[i]
+            var a_trouve = false
+            //If the monster is in the list
+            for (var i=0;i<monster_list.length;i++){
+              if (monstre === monster_list[i]){
               fetch(wiki)
                   .then(res => res.text())
                   .then(body => message.channel.send(wik(body)))
-                a_trouve = true;
-              break;
-            }
-          }
-        }
-        if (!a_trouve){
-          message.channel.send("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
-        }
-        try{console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " => "+ prettyname + ` (request by ${message.author.username})`);} catch(e) {
-        console.log(e.stack);
-    } //Nice logs
-    }}
+                  a_trouve = true
+                  break;
+                }
+              }
+            //Otherwise we look for the first occurence of the monster in the list
+            if (!a_trouve){
+              monstre2 = monstre.charAt(0).toLowerCase() + prettyname.slice(1)
+              for (var i=0;i<monster_list.length;i++){
+                if (monster_list[i].includes(monstre) || monster_list[i].includes(monstre2)){
+                  monstre = monster_list[i]
+                  prettyname=monster_list[i].replace(/_/g," ")
+                  prettyname = prettyname.charAt(0).toUpperCase() + prettyname.slice(1)
+                  wiki = "https://monsterhunter.fandom.com/wiki/" + monster_list[i]
+                  fetch(wiki)
+                      .then(res => res.text())
+                      .then(body => message.channel.send(wik(body)))
+                      a_trouve = true;
+                    break;
+                  }
+                }
+              }
+              if (!a_trouve){
+                message.channel.send("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
+              }
+            try{console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);} catch(e) {
+            console.log(e.stack);
+        } //Nice logs
+
+        }}

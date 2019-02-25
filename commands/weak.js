@@ -111,6 +111,7 @@ module.exports = {
               fetch(wiki)
                   .then(res => res.text())
                   .then(body => message.channel.send(wik(body)))
+                  .catch(console.error)
                   a_trouve = true
                   break;
                 }
@@ -127,6 +128,7 @@ module.exports = {
                   fetch(wiki)
                       .then(res => res.text())
                       .then(body => message.channel.send(wik(body)))
+                      .catch(console.error)
                       a_trouve = true;
                     break;
                   }

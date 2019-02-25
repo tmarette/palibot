@@ -177,7 +177,7 @@ module.exports = {
               console.log("Success."); //Let's put in the logs that the request is a success
               return ({embed}) //Let's return the final message
             }
-            
+
             var a_trouve = false
             //If the monster is in the list
             for (var i=0;i<monster_list.length;i++){
@@ -185,6 +185,7 @@ module.exports = {
               fetch(wiki)
                   .then(res => res.text())
                   .then(body => message.channel.send(wik(body)))
+                  .catch(console.error)
                   a_trouve = true
                   break;
                 }
@@ -201,6 +202,7 @@ module.exports = {
                   fetch(wiki)
                       .then(res => res.text())
                       .then(body => message.channel.send(wik(body)))
+                      .catch(console.error)
                       a_trouve = true;
                     break;
                   }

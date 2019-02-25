@@ -166,7 +166,7 @@ module.exports = {
             //.setDescription(wiki)
             .addField("Weakness(es) : ", weaknesses, true)
             .addField("Ailment(s) : ",ail, true )
-            if (trivia.length > 0 && trivia.length<1024){
+            if (final_trivia.length > 0 && final_trivia.length<1024){
               embed.addField("Note :",final_trivia)
             }
             if (doc_thumb.includes(".png")){embed.setThumbnail(doc_thumb);} //If there is a fitting image, then it is the thumbnail

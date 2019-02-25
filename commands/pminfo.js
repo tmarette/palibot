@@ -3,10 +3,8 @@ const Discord = require('discord.js');
 const {elements,ailments,monster_list } = require('../config.json');
 const {src_thumbnail} = require('../src_thb.json')
 module.exports = {
-    name: 'infopm',
-    description: 'i give one monster info',
-    aliases: ['weakpm'],
-
+    name: 'pminfo',
+    description: 'i give one monster info in pm',
     execute(message, args) {
 
       function capitalize(string) {
@@ -23,7 +21,7 @@ module.exports = {
 
 
 
-      const msg = message.content.slice(5,message.length).toLowerCase();
+      const msg = message.content.slice(7,message.length).toLowerCase();
       var monstre = "" //will contain the correct name for the url
       var prettyname = "" //will contain a pretty name for the monster, with capitalized letters
       const monster_name = msg.split(" ");
@@ -36,6 +34,10 @@ module.exports = {
         monstre = monstre.slice(0,monstre.length-1)
         prettyname = prettyname.slice(0,prettyname.length-1)
         var wiki = "https://monsterhunter.fandom.com/wiki/" + monstre //The url we are fetching
+
+        if (monstre==="Cornichon"){
+          message.channel.send("coucou cha :P :p <3 <3 OwOO jdr")
+        }
 
 
         function wik(doc){
@@ -180,13 +182,12 @@ module.exports = {
             //If the monster is in the list
             for (var i=0;i<monster_list.length;i++){
               if (monstre === monster_list[i]){
-              fetch(wiki)
-                  .then(res => res.text())
-                  .then(body => message.author.createDM()
-                                  .then(
-                                    message.author.dmChannel.send(wik(body))
-                                  )
-                            )
+                fetch(wiki)
+                    .then(res => res.text())
+                    .then(body => message.author.createDM()
+                                    .then(salon => salon.send(wik(body)))
+                                    .catch(console.error))
+                  .catch(console.error)
                   a_trouve = true
                   break;
                 }
@@ -203,24 +204,18 @@ module.exports = {
                   fetch(wiki)
                       .then(res => res.text())
                       .then(body => message.author.createDM()
-                                      .then(
-                                        message.author.dmChannel.send(wik(body))
-                                      )
-                            )
+                                      .then(salon => salon.send(wik(body)))
+                                      .catch(console.error))
+                      .catch(console.error)
                       a_trouve = true;
                     break;
                   }
                 }
               }
               if (!a_trouve){
-                message.author.createDM()
-                .then(
-                  message.author.dmChannel.send("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
-                )
-
+                message.channel.send("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
               }
-            try{console.log(message.author.sendMessage + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);} catch(e) {
+            try{console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);} catch(e) {
             console.log(e.stack);
         } //Nice logs
-
-        }}
+      }}

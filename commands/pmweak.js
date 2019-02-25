@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const {elements,ailments,monster_list } = require('../config.json');
 const {src_thumbnail} = require('../src_thb.json')
 module.exports = {
-    name: 'weakpm',
+    name: 'pmweak',
     description: 'i give one monster info in pm',
     execute(message, args) {
 

@@ -31,7 +31,7 @@ module.exports = {
           prettyname +=  capitalize(name_bits) + " ";
       }
 
-        monstre = monstre.slice(0,monstre.length-1)
+      monstre = monstre.slice(0,monstre.length-1).replace(/\'/g,'%27')
         prettyname = prettyname.slice(0,prettyname.length-1)
         var wiki = "https://monsterhunter.fandom.com/wiki/" + monstre //The url we are fetching
 

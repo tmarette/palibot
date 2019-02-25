@@ -3,10 +3,8 @@ const Discord = require('discord.js');
 const {elements,ailments,monster_list } = require('../config.json');
 const {src_thumbnail} = require('../src_thb.json')
 module.exports = {
-    name: 'infopm',
-    description: 'i give one monster info',
-    aliases: ['weakpm'],
-
+    name: 'weakpm',
+    description: 'i give one monster info in pm',
     execute(message, args) {
 
       function capitalize(string) {
@@ -23,7 +21,7 @@ module.exports = {
 
 
 
-      const msg = message.content.slice(5,message.length).toLowerCase();
+      const msg = message.content.slice(7,message.length).toLowerCase();
       var monstre = "" //will contain the correct name for the url
       var prettyname = "" //will contain a pretty name for the monster, with capitalized letters
       const monster_name = msg.split(" ");
@@ -80,83 +78,13 @@ module.exports = {
 
           //We now create the embed.
 
-                  var doc_thumb = src_thumbnail
+          var doc_thumb = src_thumbnail
           var begin_narrow_document= doc_thumb.indexOf(monstre);
           doc_thumb=doc_thumb.substring(begin_narrow_document,doc_thumb.length-1)
           begin_narrow_document = doc_thumb.indexOf('data-src=')+10
           doc_thumb=doc_thumb.substring(begin_narrow_document,doc_thumb.length-1)
           const end_thumbnail = doc_thumb.indexOf('.png')+4;
           doc_thumb = doc_thumb.substring(0,end_thumbnail);
-
-          //Finally, let's add one random note.
-          const begin_trivia = doc.indexOf('<h2><span class="mw-headline" id="Notes">Notes</span></h2>');
-          var doc_trivia = doc.substring(begin_trivia);
-          const end_trivia = doc_trivia.indexOf('</p></div>')-6;
-          var doc_trivia = doc_trivia.substring(0,end_trivia);
-          const begin_narrow_trivia = doc_trivia.indexOf("<ul>")+4;
-          doc_trivia = doc_trivia.substring(begin_narrow_trivia);
-          const garbage_tab = doc_trivia.split("<li>");
-          const trivia_tab = []
-          var incrementer = true
-
-          //We have to deal with lists within lists....
-
-          for (var i = 0; i < garbage_tab.length;i++){
-            if (garbage_tab[i].includes("</ul>")){
-              incrementer = true;
-              trivia_tab[trivia_tab.length-1]+="-"+garbage_tab[i]
-            }
-            else if (garbage_tab[i].includes("<ul>")){
-              incrementer = false;
-              trivia_tab.push(garbage_tab[i])
-            }
-            else {
-              if (incrementer){
-                trivia_tab.push(garbage_tab[i])
-              }
-            else {
-                trivia_tab[trivia_tab.length-1]+="-"+garbage_tab[i]
-              }
-            }
-          }
-
-          for (var i = 1; i<trivia_tab.length;i++){
-            if (trivia_tab[i].length <= 0 || trivia_tab[i].length>=1024){
-              trivia_tab.splice(i, 1);
-            }
-          }
-          const trivia = trivia_tab[Math.floor((Math.random())*trivia_tab.length)]
-
-
-
-          //now we cleanup the trivia.
-          const trivia_bits = trivia.split('href=')
-          var final_trivia = trivia_bits[0]
-          for (var i = 1; i<trivia_bits.length;i++){
-            var ugly_trivia = trivia_bits[i]
-            var link = "https://monsterhunter.fandom.com"
-            var begin_link = 1
-            var end_link = ugly_trivia.indexOf("title")
-            const wikilink = ugly_trivia.substring(begin_link,end_link-2).replace(/\(/g, "%28").replace(/\)/g,"%29")
-            link += wikilink
-            begin_link = ugly_trivia.indexOf(">")+1
-            end_link = ugly_trivia.indexOf("<")
-            const link_name = ugly_trivia.substring(begin_link,end_link)
-            var end_of_trivia = ugly_trivia.substring(ugly_trivia.indexOf("</a>")+4)
-            final_trivia += "["+link_name+"]("+link+")"+end_of_trivia
-
-          }
-
-          final_trivia = final_trivia.replace(/<i>/g, "")
-            .replace(/<a/g, "")
-            .replace(/<\/i>/g, "")
-            .replace(/<\/li>/g, '')
-            .replace(/<ul>/g, '')
-            .replace(/<\/ul>/g,'')
-
-            if (final_trivia.includes("class")){
-              final_trivia = ""
-            }
 
 
           //Now creating the embed message
@@ -167,9 +95,6 @@ module.exports = {
             //.setDescription(wiki)
             .addField("Weakness(es) : ", weaknesses, true)
             .addField("Ailment(s) : ",ail, true )
-            if (trivia.length > 0 && trivia.length<1024){
-              embed.addField("Note :",final_trivia)
-            }
             if (doc_thumb.includes(".png")){embed.setThumbnail(doc_thumb);} //If there is a fitting image, then it is the thumbnail
 
               console.log("Success."); //Let's put in the logs that the request is a success
@@ -180,13 +105,12 @@ module.exports = {
             //If the monster is in the list
             for (var i=0;i<monster_list.length;i++){
               if (monstre === monster_list[i]){
-              fetch(wiki)
-                  .then(res => res.text())
-                  .then(body => message.author.createDM()
-                                  .then(
-                                    message.author.dmChannel.send(wik(body))
-                                  )
-                            )
+                fetch(wiki)
+                    .then(res => res.text())
+                    .then(body => message.author.createDM()
+                                    .then(salon => salon.send(wik(body)))
+                                    .catch(console.error))
+                  .catch(console.error)
                   a_trouve = true
                   break;
                 }
@@ -203,24 +127,18 @@ module.exports = {
                   fetch(wiki)
                       .then(res => res.text())
                       .then(body => message.author.createDM()
-                                      .then(
-                                        message.author.dmChannel.send(wik(body))
-                                      )
-                            )
+                                      .then(salon => salon.send(wik(body)))
+                                      .catch(console.error))
+                      .catch(console.error)
                       a_trouve = true;
                     break;
                   }
                 }
               }
               if (!a_trouve){
-                message.author.createDM()
-                .then(
-                  message.author.dmChannel.send("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
-                )
-
+                message.channel.send("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
               }
-            try{console.log(message.author.sendMessage + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);} catch(e) {
+            try{console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);} catch(e) {
             console.log(e.stack);
         } //Nice logs
-
-        }}
+      }}

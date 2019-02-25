@@ -37,10 +37,6 @@ module.exports = {
         prettyname = prettyname.slice(0,prettyname.length-1)
         var wiki = "https://monsterhunter.fandom.com/wiki/" + monstre //The url we are fetching
 
-        if (monstre==="Cornichon"){
-          message.channel.send("coucou cha :P :p <3 <3 OwOO jdr")
-        }
-
 
         function wik(doc){
           //We first create 'weaknesses', the string containing the monster's weaknesses.
@@ -186,7 +182,11 @@ module.exports = {
               if (monstre === monster_list[i]){
               fetch(wiki)
                   .then(res => res.text())
-                  .then(body => message.author.sendMessage(wik(body)))
+                  .then(body => message.author.createDM()
+                                  .then(
+                                    message.author.dmChannel.send("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
+                                  )
+                            )
                   a_trouve = true
                   break;
                 }
@@ -202,14 +202,22 @@ module.exports = {
                   wiki = "https://monsterhunter.fandom.com/wiki/" + monster_list[i]
                   fetch(wiki)
                       .then(res => res.text())
-                      .then(body => message.author.sendMessage(wik(body)))
+                      .then(body => message.author.createDM()
+                                      .then(
+                                        message.author.dmChannel.send("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
+                                      )
+                            )
                       a_trouve = true;
                     break;
                   }
                 }
               }
               if (!a_trouve){
-                message.channel.send("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
+                message.author.createDM()
+                .then(
+                  message.author.dmChannel.send("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
+                )
+
               }
             try{console.log(message.author.sendMessage + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);} catch(e) {
             console.log(e.stack);

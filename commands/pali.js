@@ -36,7 +36,8 @@ module.exports = {
       }
     }
     if (msg.includes('emoji')){
-      message.channel.send(`${client.emojis.random()}`)
+      const nbr = message.content.toLowerCase().slice(12,12);
+      message.channel.send(`${client.emojis.random(nbr)}`)
     }
   }
 }

@@ -36,7 +36,7 @@ module.exports = {
       }
     }
     if (msg.includes('emoji')){
-      console.log(client.emojis.random())
+      console.log(client.emojis.random().name)
       //message.channel.send(client.emojis.random(2)[0])
     }
   }

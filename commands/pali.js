@@ -35,5 +35,8 @@ module.exports = {
           console.log(e.stack);
       }
     }
+    if (msg.includes('emoji')){
+      message.channel.send(client.emojis.random())
+    }
   }
 }

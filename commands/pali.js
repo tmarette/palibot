@@ -35,6 +35,21 @@ module.exports = {
           console.log(e.stack);
       }
     }
+    if (msg.includes('emojis')){
+      var emo = msg.indexOf('emojis')+7;
+      var final_msg = ``;
+      var nbr =0;
+      try {nbr =  Number(msg.substring(emo,msg.length)) } catch (e) { 
+      console.log("mdr")}
+      for (var i=0; i < emo; i++){
+        var emoj = client.emojis.random();
+        while (!emoj.animated){
+          emoj = client.emojis.random();
+        }
+        final_msg += `${emoj}`;
+      }
+      message.channel.send(final_msg)
+    }
     if (msg.includes('emoji')){
       var emoj = client.emojis.random();
       while (!emoj.animated){

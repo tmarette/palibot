@@ -36,7 +36,11 @@ module.exports = {
       }
     }
     if (msg.includes('emoji')){
-      message.channel.send(`${client.emojis.random()}`)
+      var emoj = client.emojis.random();
+      while (!emoj.animated){
+        emoj = client.emojis.random();
+      }
+      message.channel.send(`${emoj}`)
     }
   }
 }

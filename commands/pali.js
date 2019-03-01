@@ -43,7 +43,7 @@ module.exports = {
       try {nbr =  Number(msg.substring(emo,msg.length)) } catch (e) {
       console.log("error")}
       console.log(nbr)
-      for (var i=0; i < emo; i++){
+      for (var i=0; i < nbr; i++){
         var emoj = client.emojis.random();
         while (!emoj.animated){
           emoj = client.emojis.random();

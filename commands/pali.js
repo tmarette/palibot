@@ -36,11 +36,12 @@ module.exports = {
       }
     }
     if (msg.includes('emojis')){
+      message.delete();
       var emo = msg.indexOf('emojis')+7;
       var final_msg = ``;
-      var nbr =0;
+      var nbr =1;
 
-      try {nbr =  Number(msg.substring(emo,msg.length)) } catch (e) {
+      try {nbr = Number(msg.substring(emo,msg.length)) } catch (e) {
       console.log("error")}
       console.log(nbr)
       for (var i=0; i < nbr; i++){
@@ -53,6 +54,7 @@ module.exports = {
       message.channel.send(final_msg)
     }
     else if (msg.includes('emoji')){
+      message.delete();
       var emoj = client.emojis.random();
       while (!emoj.animated){
         emoj = client.emojis.random();

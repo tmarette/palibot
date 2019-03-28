@@ -1,7 +1,7 @@
 # palibot
 MHGU discord bot
 ------
-Currently runnning on 741 servers (last update 06/03/2019)
+Currently runnning on 758 servers (last update 28/03/2019)
 ------
 just invite the bot to your server through the following link :
 

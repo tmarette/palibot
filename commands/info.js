@@ -209,6 +209,6 @@ module.exports = {
                 message.channel.send("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
               }
             try{console.log("[info]" + message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);} catch(e) {
-            console.log(e.stack);
+            console.log([info]" + " -> "+ prettyname + ` (request by ${message.author.username}));
         } //Nice logs
       }}

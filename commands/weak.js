@@ -137,7 +137,7 @@ module.exports = {
                           if (!a_trouve){
                             message.channel.send("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
                           }
-                        try{console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);} catch(e) {
+                        try{"[weak]" + console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);} catch(e) {
                         console.log(e.stack);
                     } //Nice logs
                   }}

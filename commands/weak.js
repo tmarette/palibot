@@ -148,6 +148,7 @@ module.exports = {
                             }
                             prettyname=closest_monster.replace(/_/g," ")
                             prettyname = (closest_monster.charAt(0).toUpperCase() + prettyname.slice(1)).toLowerCase();
+                            console.log("failure. Suggestion -> " + prettyname);
                             message.channel.send("Sorry Master, I can't find the meownster ! Did you mean " + prettyname + " ? " + "\nIf not, please try `pali help` :crying_cat_face:")
                           }
                         try{"[weak]" + console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);} catch(e) {

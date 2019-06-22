@@ -217,7 +217,8 @@ module.exports = {
                     min_dist = distance;
                   }
                 }
-
+                prettyname=closest_monster.replace(/_/g," ")
+                prettyname = closest_monster.charAt(0).toUpperCase() + prettyname.slice(1)
                 message.channel.send("Sorry Master, I can't find the meownster ! Did you mean " + closest_monster + " ? " + "\nIf not, please try `pali help` :crying_cat_face:")
               }
             try{console.log("[info]" + message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);} catch(e) {

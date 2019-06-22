@@ -6,6 +6,7 @@ const {src_thumbnail} = require('../ressources/src_thb.json')
 module.exports = {
     name: 'info',
     description: 'i give one monster info',
+    aliases: ['weak'],
     execute(message, args) {
 
       function capitalize(string) {

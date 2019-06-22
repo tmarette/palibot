@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const Discord = require('discord.js');
 const {elements,ailments,monster_list } = require('../ressources/config.json');
 const {src_thumbnail} = require('../ressources/src_thb.json')
-var lev = require('levenshtein');
+var lev = require('../ressources/levenshtein');
 module.exports = {
     name: 'info',
     description: 'i give one monster info',

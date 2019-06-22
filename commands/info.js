@@ -227,7 +227,7 @@ module.exports = {
             console.log("[info]" + " -> "+ prettyname + ` (request by ${message.author.username})`);
         } //Nice logs
          if (!a_trouve){
-              console.log("failure. Suggestion -> " + suggestedname);
+              console.log("failure. Suggestion -> " + suggestedyname);
             }
 
       }}

@@ -1,5 +1,7 @@
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
+var levenshtein = require('fast-levenshtein');
+
 const {elements,ailments,monster_list } = require('../ressources/config.json');
 const {src_thumbnail} = require('../ressources/src_thb.json')
 module.exports = {
@@ -135,7 +137,18 @@ module.exports = {
                             }
                           }
                           if (!a_trouve){
-                            message.channel.send("Sorry Master, I can't find the meownster ! Try `pali help` :crying_cat_face:")
+                            var min_dist = 999999999;
+                            var closest_monster = "";
+                            for (var i=0;i<monster_list.length;i++){
+                              var distance = levenshtein.get(monstre2, monster_list[i]); // 3
+                              if (min_dist > distance){
+                                closest_monster = monster_list[i];
+                                min_dist = distance;
+                              }
+                            }
+                            prettyname=closest_monster.replace(/_/g," ")
+                            prettyname = (closest_monster.charAt(0).toUpperCase() + prettyname.slice(1)).toLowerCase();
+                            message.channel.send("Sorry Master, I can't find the meownster ! Did you mean " + prettyname + " ? " + "\nIf not, please try `pali help` :crying_cat_face:")
                           }
                         try{"[weak]" + console.log(message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);} catch(e) {
                         console.log("[weak]"  + " -> "+ prettyname + ` (request by ${message.author.username})`);

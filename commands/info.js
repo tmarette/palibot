@@ -210,6 +210,7 @@ module.exports = {
                 var min_dist = 999999;
                 var closest_monster = "";
                 for (var i=0;i<monster_list.length;i++){
+                  console.log(monster_name + monster_list[i]);
                   var distance = lev.getEditDistance(monster_name, monster_list[i]); // 3
                   if (min_dist > distance){
                     closest_monster = monster_list[i];

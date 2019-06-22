@@ -222,7 +222,7 @@ module.exports = {
               }
             try{console.log("[info]" + message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);
             if (!a_trouve){
-              console.log("failure. Suggestion -> " + prettyname);
+              console.log("failure. Suggestion -> " + suggestedname);
             }
 
           } catch(e) {

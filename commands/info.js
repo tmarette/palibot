@@ -213,7 +213,7 @@ module.exports = {
                   var distance = lev.getEditDistance(monster_name, monster_list[i]); // 3
                   if (min_dist > distance){
                     closest_monster = monster_list[i];
-                    min_dist = distace;
+                    min_dist = distance;
                   }
                 }
 

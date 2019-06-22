@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
 const {elements,ailments,monster_list } = require('../ressources/config.json');
-const {src_thumbnail} = require('../ressources.src_thb.json')
+const {src_thumbnail} = require('../ressources/src_thb.json')
 var lev = require('levenshtein');
 module.exports = {
     name: 'info',

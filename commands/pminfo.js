@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
-const {elements,ailments,monster_list } = require('../config.json');
-const {src_thumbnail} = require('../src_thb.json')
+const {elements,ailments,monster_list } = require('../ressources/config.json');
+const {src_thumbnail} = require('../ressources/src_thb.json')
 module.exports = {
     name: 'pminfo',
     description: 'i give one monster info in pm',

@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const levenshtein = require('js-levenshtein');
 const {elements,ailments,monster_list } = require('../ressources/config.json');
 const {src_thumbnail} = require('../ressources/src_thb.json')
+var lev = require('../ressources/levenshtein');
 module.exports = {
     name: 'info',
     description: 'i give one monster info',
@@ -210,7 +211,7 @@ module.exports = {
                 var min_dist = 999999999;
                 var closest_monster = "";
                 for (var i=0;i<monster_list.length;i++){
-                  var distance = levenshtein.getEditDistance(monster_name, monster_list[i]); // 3
+                  var distance = levenshtein(monster_name, monster_list[i]); // 3
                   console.log(monster_name + " " + monster_list[i] + " score : " + distance);
                   if (min_dist > distance){
                     closest_monster = monster_list[i];

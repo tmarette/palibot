@@ -207,11 +207,11 @@ module.exports = {
                 }
               }
               if (!a_trouve){
-                var min_dist = 999999;
+                var min_dist = 999999999;
                 var closest_monster = "";
                 for (var i=0;i<monster_list.length;i++){
-                  console.log(monster_name + monster_list[i]);
                   var distance = lev.getEditDistance(monster_name, monster_list[i]); // 3
+                  console.log(monster_name + " " + monster_list[i] + " score : " + distance);
                   if (min_dist > distance){
                     closest_monster = monster_list[i];
                     min_dist = distance;

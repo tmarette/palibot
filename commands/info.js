@@ -211,7 +211,7 @@ module.exports = {
                 var min_dist = 999999999;
                 var closest_monster = "";
                 for (var i=0;i<monster_list.length;i++){
-                  var distance = levenshtein.get(monstre2, monster_list[i]); // 3
+                  var distance = levenshtein.get(monstre2.replace(/%27/g,"'"), monster_list[i].replace(/%27/g,"'")); // 3
                   if (min_dist > distance){
                     closest_monster = monster_list[i];
                     min_dist = distance;

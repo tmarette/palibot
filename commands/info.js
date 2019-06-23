@@ -173,7 +173,7 @@ module.exports = {
             }
             if (doc_thumb.includes(".png")){embed.setThumbnail(doc_thumb);} //If there is a fitting image, then it is the thumbnail
 
-              console.log("Success."); //Let's put in the logs that the request is a success
+              console.log("Success. (" + prettyname + ")"); //Let's put in the logs that the request is a success
               return ({embed}) //Let's return the final message
             }
 
@@ -221,13 +221,18 @@ module.exports = {
                 suggestedyname = (closest_monster.charAt(0).toUpperCase() + suggestedyname.slice(1)).toLowerCase();
                 message.channel.send("Sorry Master, I can't find the meownster ! Did you mean " + suggestedyname + " ? " + "\nIf not, please try `pali help` :crying_cat_face:")
               }
-            try{console.log("[info]" + message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ prettyname + ` (request by ${message.author.username})`);
+            try{console.log("[info]" + message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ msg + ` (request by ${message.author.username})`);
             
           } catch(e) {
             console.log("[info]" + " -> "+ prettyname + ` (request by ${message.author.username})`);
         } //Nice logs
          if (!a_trouve){
+             if (msg == "<@510472551332315157>"){
+                 console.log("Im not a monster! I'm the palibot!");
+             }
+             else{
               console.log("failure. Suggestion -> " + suggestedyname);
+             }
             }
 
       }}

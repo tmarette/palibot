@@ -25,14 +25,14 @@ module.exports = {
   		  .addField("What if I was a good bot ?", "You can pet me with the command ```pali pet```");
         embed.setThumbnail('https://ih0.redbubble.net/image.98407351.3167/st%2Csmall%2C215x235-pad%2C210x230%2Cf8f8f8.lite-1u2.jpg');
         try {console.log(`${message.guild.name}` + ` (${message.guild.memberCount} users) ${message.author.username} needed help.`)} catch(e) {
-        console.log(e.stack);
+        console.log(`${message.author.username} needed help. (dm)`);
     }
   		  message.channel.send({embed});
 		  }
       if (msg.includes('pet')){
         message.channel.send('Thank you Meowster *purr purr*')
           try {console.log(`${message.guild.name}` + ` (${message.guild.memberCount} users) ${message.author.username} has pet me.`)} catch(e) {
-          console.log(e.stack);
+          console.log(`${message.author.username} has pet me. (dm)`);
       }
     }
     if (msg.includes('emojis')){

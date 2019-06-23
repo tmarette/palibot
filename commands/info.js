@@ -217,7 +217,7 @@ module.exports = {
                     min_dist = distance;
                   }
                 }
-                var suggestedyname=closest_monster.replace(/_/g," ")
+                var suggestedyname=closest_monster.replace(/_/g," ").replace(/%27/g,"'");
                 suggestedyname = (closest_monster.charAt(0).toUpperCase() + suggestedyname.slice(1)).toLowerCase();
                                if (msg == "<@510472551332315157>"){
                  message.channel.send("Im not a monster! I'm the palibot!");

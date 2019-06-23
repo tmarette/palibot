@@ -19,7 +19,7 @@ module.exports = {
   		    "```info <monster>```makes me display one monster's weaknesses, ailments, and a\nrandom trivia\n ```weak <monster>``` only makes me display its weaknesses and ailments.\nPlease note that I can understand only partial monster name (`weak jho` will display information about deviljho!)\nI can also pm you the message if you don't wanna spam with the commands `pmweak monster` and `pminfo monster`")
         .addBlankField(true)
   		  .addField("What if I can't find the meownster ?", "Maybe you typed the meownster's name wrong.\nI can understand for instance `weak yIAN Kut-KU` but I can't\nunderstand `weak yian kut ku` because of the missing hyphen.\n\n"
-        +"Otherwise, maybe it's a bug. If you want to see it fixed, please pm [/u/yasefumi](https://www.reddit.com/message/compose/?to=Yasefumi) on reddit :)\n Please note that due to finiancial issues, the bot might be offline last days of every months")
+        +"Otherwise, maybe it's a bug. If you want to see it fixed, please pm [/u/yasefumi](https://www.reddit.com/message/compose/?to=Yasefumi) on reddit :)\n **Please note that due to finiancial issues, the bot might be offline last days of every months**")
 
   		  .addBlankField(true)
   		  .addField("What if I was a good bot ?", "You can pet me with the command ```pali pet```");

@@ -219,7 +219,12 @@ module.exports = {
                 }
                 var suggestedyname=closest_monster.replace(/_/g," ")
                 suggestedyname = (closest_monster.charAt(0).toUpperCase() + suggestedyname.slice(1)).toLowerCase();
-                message.channel.send("Sorry Master, I can't find the meownster ! Did you mean " + suggestedyname + " ? " + "\nIf not, please try `pali help` :crying_cat_face:")
+                               if (msg == "<@510472551332315157>"){
+                 message.channel.send("Im not a monster! I'm the palibot!");
+             }
+             else{
+                message.channel.send("Sorry Master, I can't find the meownster ! Did you mean " + suggestedyname + " ? " + "\nIf not, please try `pali help`  :crying_cat_face:")
+                }
               }
             try{console.log("[info]" + message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ msg + ` (request by ${message.author.username})`);
             
@@ -227,12 +232,9 @@ module.exports = {
             console.log("[info]" + " -> "+ prettyname + ` (request by ${message.author.username})`);
         } //Nice logs
          if (!a_trouve){
-             if (msg == "<@510472551332315157>"){
-                 console.log("Im not a monster! I'm the palibot!");
-             }
-             else{
+
               console.log("failure. Suggestion -> " + suggestedyname);
-             }
+             
             }
 
       }}

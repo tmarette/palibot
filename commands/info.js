@@ -223,7 +223,7 @@ module.exports = {
                  message.channel.send("Im not a monster! I'm the palibot!");
              }
              else{
-                message.channel.send("Sorry Master, I can't find the meownster ! Did you mean " + suggestedyname + " ? " + "\nIf not, please try `pali help`  :crying_cat_face:")
+                message.channel.send("Sorry Master, I can't find the meownster ! Did you mean **" + suggestedyname + "** ? " + "\nIf not, please try `pali help`  :crying_cat_face:")
                 }
               }
             try{console.log("[info]" + message.guild.name + ` (${message.guild.memberCount} users)` + " -> "+ msg + ` (request by ${message.author.username})`);

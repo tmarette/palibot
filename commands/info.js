@@ -24,6 +24,9 @@ module.exports = {
 
 
       const msg = message.content.slice(5,message.length).toLowerCase();
+       if(msg === ``){
+            return;
+       }
       var monstre = "" //will contain the correct name for the url
       var prettyname = "" //will contain a pretty name for the monster, with capitalized letters
       const monster_name = msg.split(" ");

@@ -72,7 +72,7 @@ module.exports = {
           const end_ailment = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to')
           const docail = doc.substring(begin_ailment,end_ailment)
           for (var i=0; i<ailments.length;i++){
-            if (docail.includes(ailments[i])){
+            if (docail.includes("Status_Effect-"+ailments[i])){
               current_ail = ailments[i].replace(/ /g, '_');
               emoj_ail = client.emojis.find(emoji => emoji.name === current_ail + "_ailment");
               ail = ail.concat(emoj_ail + ` ` + ailments[i]+`\n`);

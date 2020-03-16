@@ -47,7 +47,7 @@ module.exports = {
 
 
           const begin_weak = doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Weakest to');
-          const end_weak =  doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Habitats');
+          const end_weak =  doc.indexOf('<h3 class="pi-data-label pi-secondary-font">Habitat');
 
           var weaknesses = ``;
 
